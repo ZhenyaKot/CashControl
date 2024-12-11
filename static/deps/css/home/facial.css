@@ -1,0 +1,77 @@
+body {
+    font-family: 'Open Sans', sans-serif;
+    background-color: #f4f4f4;
+    margin: 0;
+    display: flex; /* Используем flexbox для расположения бокового меню и основного контента */
+}
+
+.container {
+    display: flex;
+    width: 100%;
+}
+
+/* Стили для бокового меню */
+.sidebar {
+    width: 130px;
+    background-color: #f4f4f4;
+    padding: 20px;
+    box-shadow: 2px 0 5px rgba(0, 0, 0, 0.1);
+}
+
+/* Стили для списка меню */
+.sidebar ul {
+    list-style: none;
+    padding: 0;
+}
+
+/* Элементы списка в меню */
+.sidebar ul li {
+    margin-bottom: 15px;
+}
+
+/* Ссылки в меню */
+.sidebar ul li a {
+    text-decoration: none;
+    color: #333;
+    padding: 10px; /* Добавьте отступ для удобства клика */
+    display: block; /* Делаем ссылку блочным элементом */
+    border-radius: 3px; /* Немного закруглённые углы для эстетики */
+    transition: background-color 0.3s; /* Плавный переход для фона */
+}
+
+/* Эффект при наведении на ссылки */
+.sidebar ul li a:hover {
+    background-color: #e0e0e0; /* Подсветка серым цветом при наведении */
+}
+
+.main-content {
+    flex: 1; /* Основной контент занимает оставшееся пространство */
+    padding: 20px;
+}
+
+.dashboard {
+    display: grid; /* Используем grid для расположения блоков */
+    grid-template-columns: 1fr 1fr; /* Две колонки */
+    gap: 20px; /* Отступ между блоками */
+}
+
+.balance-section, .transactions-section {
+    background-color: white; /* Цвет фона блоков */
+    border-radius: 8px; /* Закругленные углы */
+    padding: 20px; /* Отступ внутри блоков */
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); /* Тень для блоков */
+}
+
+.charts-section {
+    display: grid; /* Используем grid для 2-х блоков нижнего ряда */
+    grid-template-columns: 1fr 1fr; /* Две колонки */
+    gap: 20px; /* Отступ между графиками */
+    margin-top: 20px; /* Отступ сверху */
+}
+
+.expenses-chart, .categories-chart {
+    background-color: white; /* Цвет фона блоков */
+    border-radius: 8px; /* Закругленные углы */
+    padding: 20px; /* Отступ внутри блоков */
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); /* Тень для блоков */
+}

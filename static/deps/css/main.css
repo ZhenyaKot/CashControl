@@ -1,0 +1,139 @@
+body {
+    font-family: 'Open Sans', sans-serif; /* Шрифт для всего тела документа */
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: auto; /* Позволяет секции заполнять установленное пространство */
+    background: linear-gradient(to bottom right, #85c1ae, #348b7d); /* Градиентный цвет */
+    color: white; /* Цвет текста */
+    text-align: center; /* Центрирование текста */
+}
+
+.header {
+    position: absolute;
+    top: 20px; /* Расположение в верхней части */
+    right: 20px; /* Расположение справа */
+}
+
+.header a {
+    margin-left: 20px; /* Отступ между ссылками */
+    text-decoration: none; /* Убирает подчеркивание */
+    color: white; /* Цвет текста */
+    font-weight: bold; /* Жирный текст */
+}
+
+.site-title {
+    font-size: 10em; /* Размер шрифта заголовка */
+    margin: 100px 0; /* Увеличиваем отступы сверху и снизу для больше пространства */
+    font-family: 'Open Sans', sans-serif; /* Обеспечить использование 'Open Sans' */
+    text-shadow: 10px 10px 5px rgba(0, 0, 0, 0.2); /* Создание легкой тени */
+}
+
+
+.slogan {
+    font-size: 4em; /* Размер шрифта для подзаголовка */
+    margin: 0px 0; /* Увеличиваем отступы сверху и снизу */
+}
+
+.description {
+    font-size: 1.3em; /* Уменьшаем размер шрифта для описания */
+    margin: 20px 10px; /* Увеличиваем отступы сверху и снизу, по бокам */
+    max-width: 600px; /* Максимальная ширина для текста описания */
+    line-height: 1.4; /* Высота строки для лучшего восприятия */
+    text-align: center; /* Центрирование текста */
+    overflow-wrap: break-word; /* Перенос слов для аккуратного отображения */
+}
+
+.start-button {
+    margin-top: 20px; /* Отступ сверху */
+    padding: 10px 20px; /* Внутренние отступы кнопки */
+    font-size: 1em; /* Размер шрифта кнопки */
+    color: #348b7d; /* Цвет текста кнопки */
+    background-color: white; /* Цвет фона кнопки */
+    border: none; /* Убирает рамку */
+    border-radius: 5px; /* Закругленные углы */
+    cursor: pointer; /* Курсор при наведении */
+    transition: transform 0.3s, box-shadow 0.3s; /* Плавный переход */
+}
+
+.start-button:hover {
+    transform: scale(1.1); /* Увеличиваем размер кнопки на 10% при наведении */
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1); /* Добавляем тень для эффекта */
+}
+
+/* Стили для ссылки в заголовке */
+.header a {
+    margin: 10px; /* Отступ между ссылками */
+    padding: 10px; /* Внутренний отступ для создания эффекта */
+    font-size: 1.2em; /* Размер шрифта */
+    color: #FFFFFF; /* Цвет текста */
+    text-decoration: none; /* Убираем подчеркивание */
+    transition: text-decoration 0.3s, transform 0.3s; /* Плавный переход */
+    cursor: pointer; /* Курсор при наведении */
+    display: inline-block; /* Убедитесь, что элемент ведёт себя как блочный (или инлайн-блочный) элемент */
+}
+
+.header a:hover {
+    text-decoration: underline; /* Подчеркивание при наведении */
+    text-decoration-color: white; /* Цвет подчеркивания */
+    transform: scale(1.1); /* Увеличение размера ссылки на 10% при наведении */
+}
+
+.features {
+    max-width: 1200px; /* Ограничение ширины секции */
+    margin: 0 auto; /* Центрирование секции */
+    padding: 20px; /* Отступы вокруг секции */
+}
+
+.feature-cards {
+    display: flex; /* Использование флексов для расположения карточек в ряд */
+    justify-content: space-between; /* Пространство между карточками */
+    flex-wrap: wrap; /* Перенос карточек на новую строку при необходимости */
+}
+
+.feature-card {
+    background-color: #f9f9f9; /* Цвет фона карточки */
+    border-radius: 8px; /* Закругленные углы */
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1); /* Тень для карточек */
+    margin: 10px; /* Отступы между карточками */
+    flex: 1 1 calc(30% - 20px); /* Задаем ширину карточек */
+    padding: 15px; /* Отступы внутри карточки */
+    box-sizing: border-box; /* Учитывать отступы и границы в размере */
+    transition: transform 0.3s, box-shadow 0.3s; /* Плавный переход для трансформации и тени */
+}
+
+/* Эффект при наведении на карточку */
+.feature-card:hover {
+    transform: scale(1.05); /* Увеличение карточки на 5% при наведении */
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2); /* Увеличение тени при наведении */
+}
+
+.feature-card img {
+    max-width: 100%; /* Масштабирование изображений, чтобы они не выходили за рамки карточки */
+    height: auto; /* Соотношение сторон для изображений */
+}
+
+.feature-card h3 {
+    margin-top: 0; /* Убираем верхний отступ для заголовков внутри карточек */
+    color: black; /* Цвет текста черный */
+}
+
+/* Применяем стили только к параграфам p внутри feature-card */
+.feature-card p {
+    margin: 10px 0; /* Установка отступов для абзацев */
+    line-height: 1.6; /* Увеличение межстрочного интервала для лучшей читаемости */
+    color: black; /* Цвет текста черный */
+    font-size: 1em; /* Размер шрифта для абзацев */
+}
+
+/* Добавим класс для текста в карточках, чтобы сделать их более аккуратными */
+.feature-card p.description {
+    font-size: 0.95em; /* Уменьшение размера шрифта для описания */
+    color: #333; /* Более темный цвет текста для лучшего контрастирования */
+    margin-top: 5px; /* У лицевой отступ сверху */
+    margin-bottom: 5px; /* Уменьшаем нижний отступ */
+}
+

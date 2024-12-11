@@ -1,0 +1,111 @@
+{% load static %}
+
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Управление категориями</title>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;600&display=swap">
+    <link rel="stylesheet" href="{% static 'deps/css/home/categories.css' %}"> <!-- Подключение стилевого файла -->
+</head>
+<body>
+
+<div class="container">
+    <nav class="sidebar">
+        <ul>
+            <li><a href="#profile"><img src="{% static '/deps/icons/profile_24.png' %}" alt="Профиль"> Профиль</a></li>
+            <li><a href="#categories"><img src="{% static '/deps/icons/category_24.png' %}" alt="Категории">
+                Категории</a></li>
+            <li><a href="#transactions"><img src="{% static '/deps/icons/transactions_24.png' %}" alt="Транзакции">
+                Транзакции</a></li>
+            <li><a href="#reports"><img src="{% static '/deps/icons/reports_24.png' %}" alt="Отчеты"> Отчеты</a></li>
+            <li><a href="#analytics"><img src="{% static '/deps/icons/analysts_24.png' %}" alt="Аналитика">
+                Аналитика</a></li>
+            <li><a href="#settings"><img src="{% static '/deps/icons/settings_24.png' %}" alt="Настройки"> Настройки</a>
+            </li>
+        </ul>
+    </nav>
+
+    <div class="main-content">
+        <h1>
+            CashControl <img src="{% static '/deps/icons/logo_32.png' %}" class="logo">
+        </h1>
+
+
+<div class="main-content">
+    <h1>Управление категориями</h1>
+    <div class="category-list">
+        <h2>Список категорий</h2>
+        <div class="categories">
+            <div class="category-item">
+                <a href="#category1" class="category-title">Категория 1</a>
+                <span class="category-description">Краткое описание категории 1</span>
+                <button onclick="editCategory()">Редактировать</button>
+                <button onclick="viewCategory()">Статистика категории</button>
+            </div>
+            <div class="category-item">
+                <a href="#category2" class="category-title">Категория 2</a>
+                <span class="category-description">Краткое описание категории 2</span>
+                <button onclick="editCategory()">Редактировать</button>
+                <button onclick="viewCategory()">Статистика категории</button>
+            </div>
+            <div class="category-item">
+                <a href="#category3" class="category-title">Категория 3</a>
+                <span class="category-description">Краткое описание категории 3</span>
+                <button onclick="editCategory()">Редактировать</button>
+                <button onclick="viewCategory()">Статистика категории</button>
+            </div>
+            <div class="category-item">
+                <a href="#category4" class="category-title">Категория 4</a>
+                <span class="category-description">Краткое описание категории 4</span>
+                <button onclick="editCategory()">Редактировать</button>
+                <button onclick="viewCategory()">Статистика категории</button>
+            </div>
+            <!-- Добавьте здесь больше категорий по мере необходимости -->
+        </div>
+    </div>
+
+    <div class="add-category">
+        <h2>Добавить категорию</h2>
+        <form id="addCategoryForm">
+            <input type="text" id="new-category-name" placeholder="Название категории" required>
+            <input type="text" id="new-description-name" placeholder="описание категории" required>
+            <button type="submit">Добавить</button>
+        </form>
+    </div>
+</div>
+        <div class="visualization">
+            <h2>Визуализация данных по категории</h2>
+            <canvas id="categoryChart" width="400" height="200"></canvas>
+            <!-- Здесь будет размещаться визуализация данных, например, график -->
+            <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+            <script>
+                var ctx = document.getElementById('categoryChart').getContext('2d');
+                var categoryChart = new Chart(ctx, {
+                    type: 'bar',
+                    data: {
+                        labels: ['Категория 1', 'Категория 2', 'Категория 3'],
+                        datasets: [{
+                            label: 'Расходы',
+                            data: [1200, 1900, 3000],
+                            backgroundColor: 'rgba(75, 192, 192, 0.2)',
+                            borderColor: 'rgba(75, 192, 192, 1)',
+                            borderWidth: 1
+                        }]
+                    },
+                    options: {
+                        scales: {
+                            y: {
+                                beginAtZero: true
+                            }
+                        }
+                    }
+                });
+
+            </script>
+        </div>
+    </div>
+</div>
+
+</body>
+</html>

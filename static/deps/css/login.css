@@ -1,0 +1,71 @@
+body {
+    font-family: 'Open Sans', sans-serif; /* Шрифт для всего тела документа */
+     background: linear-gradient(to bottom right, #85c1ae, #348b7d); /* Градиентный цвет */
+    display: flex;
+    justify-content: center; /* Центрирование */
+    align-items: center; /* Центрирование */
+    height: 100vh; /* Высота экрана */
+    margin: 0;
+}
+
+.form-container {
+    background-color: #ffffff; /* Фон формы */
+    padding: 40px; /* Увеличиваем отступы для повышения размера */
+    border-radius: 8px; /* Закругленные углы */
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1); /* Тень */
+    width: 400px; /* Увеличиваем ширину формы */
+}
+
+h2 {
+    text-align: center; /* Центрирование заголовка */
+    margin-bottom: 30px; /* Отступ снизу */
+    font-size: 1.8em; /* Увеличиваем размер шрифта заголовка */
+}
+
+.form-group {
+    margin-bottom: 25px; /* Увеличиваем отступ для групп поля */
+}
+
+label {
+    margin-bottom: 5px; /* Отступ снизу для меток */
+    display: block; /* Блоковая модель */
+    font-weight: 100; /* Нормальная густота шрифта для меток */
+}
+
+input[type="text"],
+input[type="password"] {
+    width: 100%; /* Ширина на 100% */
+    padding: 12px; /* Увеличиваем отступы внутри поля */
+    border: 1px solid #ccc; /* Граница */
+    border-radius: 4px; /* Закругленные углы */
+    box-sizing: border-box; /* Учитывать отступы в размере */
+    font-size: 1em; /* Увеличиваем размер шрифта для полей ввода */
+}
+
+input[type="checkbox"] {
+    margin-right: 5px; /* Отступ справа для чекбокса */
+}
+
+button {
+    width: 100%; /* Ширина кнопки на 100% */
+    padding: 12px; /* Увеличиваем отступы внутри кнопки */
+    background-color: transparent; /* Прозрачный фон */
+    color: #000000; /* Цвет текста кнопки */
+    border: 1px solid #d3d3d3; /* Светло-серая рамка */;
+    border-radius: 4px; /* Закругленные углы */
+    cursor: pointer; /* Указатель при наведении на кнопку */
+    font-size: 1em; /* Размер шрифта для кнопки */
+    transition: background-color 0.3s, transform 0.3s; /* Плавный переход для фона и увеличения */
+}
+
+button:hover {
+    background-color: rgba(40, 167, 69, 0.1); /* Светло-серый фон при наведении */
+    transform: scale(1.05); /* Увеличение кнопки при наведении */
+}
+
+.register-link {
+    text-align: center; /* Центрирование ссылки для регистрации */
+    margin-top: 15px; /* Отступ сверху */
+    display: block; /* Блочный элемент для ссылки */
+    font-size: 0.9em; /* Размер шрифта для ссылки */
+}

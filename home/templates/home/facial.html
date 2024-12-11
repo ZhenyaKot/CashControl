@@ -1,0 +1,158 @@
+{% load static %}
+
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CashControl</title>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;600&display=swap">
+    <link rel="stylesheet" href="{% static 'deps/css/home/facial.css' %}"> <!-- Подключение стилевого файла -->
+
+</head>
+<body>
+
+<div class="container">
+    <nav class="sidebar">
+        <ul>
+            <li><a href="#profile"><img src="{% static '/deps/icons/profile_24.png' %}" alt="Профиль"> Профиль</a></li>
+            <li><a href="#categories"><img src="{% static '/deps/icons/category_24.png' %}" alt="Категории"> Категории</a></li>
+            <li><a href="#transactions"><img src="{% static '/deps/icons/transactions_24.png' %}" alt="Транзакции"> Транзакции</a></li>
+            <li><a href="#reports"><img src="{% static '/deps/icons/reports_24.png' %}" alt="Отчеты"> Отчеты</a></li>
+            <li><a href="#analytics"><img src="{% static '/deps/icons/analysts_24.png' %}" alt="Аналитика"> Аналитика</a></li>
+            <li><a href="#settings"><img src="{% static '/deps/icons/settings_24.png' %}" alt="Настройки"> Настройки</a></li>
+        </ul>
+    </nav>
+
+    <div class="main-content">
+        <h1>
+            CashControl <img src="{% static '/deps/icons/logo_32.png' %}" class="logo">
+        </h1>
+
+        <div class="dashboard">
+            <div class="balance-section">
+                <h2>Кошелек</h2>
+                <p><strong>Краткий баланс:</strong></p>
+                <p>Доходы: 10000 ₽</p>
+                <p>Расходы: 5000 ₽</p>
+                <p><strong>Баланс: 5000 ₽</strong></p>
+            </div>
+
+            <div class="transactions-section">
+                <h2>Последние транзакции</h2>
+                <ul>
+                    <li>10.12.2024 - Ужин в ресторане - 1500 ₽</li>
+                    <li>09.12.2024 - Покупка в магазине - 2500 ₽</li>
+                    <li>08.12.2024 - Заработная плата - 7000 ₽</li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="charts-section">
+            <div class="expenses-chart">
+                <h2>График трат за текущий месяц</h2>
+                <div class="chart">Здесь будет график</div>
+            </div>
+
+            <div class="categories-chart">
+                <h2>Категории расходов</h2>
+                <div class="chart">Здесь будет график расследований по категориям</div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+<!--{% load static %}-->
+
+<!--<html lang="ru">-->
+<!--<head>-->
+<!--    <meta charset="UTF-8">-->
+<!--    <meta name="viewport" content="width=device-width, initial-scale=1.0">-->
+<!--    <title>Money Tracker</title>-->
+<!--    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;600&display=swap">-->
+<!--    <link rel="stylesheet" href="{% static 'deps/css/home/facial.css' %}"> &lt;!&ndash; Подключение стилевого файла &ndash;&gt;-->
+<!--</head>-->
+<!--<body>-->
+
+<!--<div class="container">-->
+<!--    <nav class="sidebar">-->
+<!--        <ul>-->
+<!--            <li><a href="#profile"><img src="{% static '/deps/icons/profile_24.png' %}" alt="Профиль"> Профиль</a></li>-->
+<!--            <li><a href="#categories"><img src="{% static '/deps/icons/category_24.png' %}" alt="Категории"> Категории</a></li>-->
+<!--            <li><a href="#transactions"><img src="{% static '/deps/icons/transactions_24.png' %}" alt="Транзакции"> Транзакции</a></li>-->
+<!--            <li><a href="#reports"><img src="{% static '/deps/icons/reports_24.png' %}" alt="Отчеты"> Отчеты</a></li>-->
+<!--            <li><a href="#analytics"><img src="{% static '/deps/icons/analysts_24.png' %}" alt="Аналитика"> Аналитика</a></li>-->
+<!--            <li><a href="#settings"><img src="{% static '/deps/icons/settings_24.png' %}" alt="Настройки"> Настройки</a></li>-->
+<!--        </ul>-->
+<!--    </nav>-->
+
+<!--    <div class="main-content">-->
+<!--        <h1>-->
+<!--            CashControl <img src="{% static '/deps/icons/logo_32.png' %}"  class="logo">-->
+<!--        </h1>-->
+
+<!--        &lt;!&ndash; Остальной контент &ndash;&gt;-->
+<!--        <div class="section">-->
+<!--            <h2>Управление категориями расходов</h2>-->
+<!--            <form>-->
+<!--                <div class="form-group">-->
+<!--                    <label for="category-name">Название категории</label>-->
+<!--                    <input type="text" id="category-name" placeholder="Например, еда" required>-->
+<!--                </div>-->
+<!--                <div class="form-group">-->
+<!--                    <label for="category-icon">Выбор иконки</label>-->
+<!--                    <input type="text" id="category-icon" placeholder="Например, 🍽️" class="icon-select" required>-->
+<!--                </div>-->
+<!--                <button type="submit">Добавить категорию</button>-->
+<!--            </form>-->
+<!--        </div>-->
+
+<!--        <div class="section">-->
+<!--            <h2>Запись транзакций</h2>-->
+<!--            <form>-->
+<!--                <div class="form-group">-->
+<!--                    <label for="transaction-category">Категория</label>-->
+<!--                    <input type="text" id="transaction-category" placeholder="Выберите категорию" required>-->
+<!--                </div>-->
+<!--                <div class="form-group">-->
+<!--                    <label for="transaction-amount">Сумма</label>-->
+<!--                    <input type="number" id="transaction-amount" placeholder="Введите сумму" required>-->
+<!--                </div>-->
+<!--                <div class="form-group">-->
+<!--                    <label for="transaction-date">Дата</label>-->
+<!--                    <input type="date" id="transaction-date" required>-->
+<!--                </div>-->
+<!--                <div class="form-group">-->
+<!--                    <label for="transaction-comment">Комментарий</label>-->
+<!--                    <textarea id="transaction-comment" rows="3" placeholder="Дополнительная информация"></textarea>-->
+<!--                </div>-->
+<!--                <button type="submit">Добавить транзакцию</button>-->
+<!--            </form>-->
+<!--        </div>-->
+
+<!--        <div class="section">-->
+<!--            <h2>Просмотр отчетов</h2>-->
+<!--            <div class="reports">-->
+<!--                <div class="chart">График доходов и расходов</div>-->
+<!--                <div class="chart">Диаграмма по категориям</div>-->
+<!--            </div>-->
+<!--        </div>-->
+<!--    </div>-->
+<!--</div>-->
+
+<!--</body>-->
+<!--</html>-->

@@ -1,0 +1,198 @@
+.container {
+    display: flex;
+}
+
+.sidebar {
+    width: 130px; /* Ширина бокового меню */
+    background-color: #f4f4f4; /* Цвет фона */
+    padding: 20px; /* Внутренние отступы */
+    box-shadow: 2px 0 5px rgba(0, 0, 0, 0.1);
+}
+
+/* Стили для списка меню */
+.sidebar ul {
+    list-style: none;
+    padding: 0;
+}
+
+/* Элементы списка в меню */
+.sidebar ul li {
+    margin-bottom: 15px;
+}
+
+/* Ссылки в меню */
+.sidebar ul li a {
+    text-decoration: none;
+    color: #333;
+    padding: 10px; /* Добавьте отступ для удобства клика */
+    display: block; /* Делаем ссылку блочным элементом */
+    border-radius: 3px; /* Немного закруглённые углы для эстетики */
+    transition: background-color 0.3s; /* Плавный переход для фона */
+}
+
+/* Эффект при наведении на ссылки */
+.sidebar ul li a:hover {
+    background-color: #e0e0e0; /* Подсветка серым цветом при наведении */
+}
+
+.main-content {
+    padding: 20px; /* Отступы для основного контента */
+    flex: 1; /* Занять оставшееся пространство */
+}
+
+.profile-container {
+    display: flex;
+    margin-top: 20px;
+}
+
+.profile-photo {
+    margin-right: 20px; /* Отступ между фотографией и информацией */
+}
+
+#profile-picture {
+    width: 200px; /* Ширина области для фотографии */
+    height: 250px; /* Высота области для фотографии */
+    border-radius: 0; /* Убираем закругление для квадратной формы */
+    object-fit: cover; /* Обеспечиваем, что изображение сохраняет пропорции */
+    cursor: pointer; /* Указатель при наведении */
+    border: 1px solid #ccc; /* Рамка вокруг изображения */
+}
+
+.user-info {
+    flex: 1; /* Занять оставшееся пространство */
+}
+
+h1 {
+    text-align: left; /* Выравнивание заголовка влево */
+}
+
+h2 {
+    margin-top: 20px; /* Отступ сверху заголовка */
+}
+
+.form-group {
+    margin-bottom: 15px; /* Отступы между группами формы */
+}
+
+label {
+    display: block; /* Метка занимает всю ширину */
+    margin-bottom: 5px; /* Отступ снизу метки */
+}
+
+input[type="text"],
+input[type="email"],
+input[type="tel"],
+input[type="date"],
+input[type="password"] {
+    width: 100%; /* Полная ширина полей ввода */
+    padding: 10px; /* Внутренние отступы */
+    border: 1px solid #ccc; /* Рамка поля */
+    border-radius: 4px; /* Закругленные углы */
+}
+
+button {
+    padding: 10px 15px; /* Внутренние отступы для кнопок */
+    background-color: #5cb85c; /* Цвет кнопки */
+    color: white; /* Цвет текста */
+    border: none; /* Убираем стандартную рамку */
+    border-radius: 4px; /* Закругленные углы */
+    cursor: pointer; /* Указатель при наведении */
+    margin-top: 10px; /* Отступ сверху */
+}
+
+button:hover {
+    background-color: #4cae4c; /* Темнеет при наведении */
+}
+
+.settings-section {
+    border: 1px solid #ccc;
+    margin-top: 10px;
+    padding: 10px;
+    border-radius: 5px;
+}
+
+.settings-item {
+    margin: 10px 0;
+}
+
+.content {
+    display: none;
+    margin-top: 10px;
+}
+
+.toggle-button {
+    text-align: left; /* Выравнивание текста влево */
+    color: black; /* Черный цвет для текста заголовка */
+    border: none;
+    background-color: white; /* Белый фон */
+    font-size: 16px;
+    transition: background-color 0.3s; /* Плавный переход для фона */
+    width: 100%; /* Кнопка занимает полную ширину */
+}
+
+/* Эффект при наведении на заголовок разделов */
+.toggle-button:hover {
+    background-color: #e0e0e0; /* Серый фон при наведении */
+}
+
+
+
+.settings-item button {
+    padding: 10px 15px; /* Внутренние отступы для кнопок */
+    background-color: white; /* Белый фон кнопок */
+    color: black; /* Черный цвет текста */
+    border: 1px solid black; /* Черная рамка */
+    border-radius: 4px; /* Закругленные углы */
+    cursor: pointer; /* Указатель при наведении */
+    margin-top: 10px; /* Отступ сверху */
+    transition: background-color 0.3s, color 0.3s; /* Плавный переход для фона и цвета */
+}
+
+/* Стили для кнопок в секции "Настройки безопасности" при наведении */
+.settings-item button:hover {
+    background-color: #e0e0e0; /* Серый цвет фона при наведении */
+    color: black; /* Цвет текста остается черным */
+}
+
+.logout-container {
+    display: flex; /* Используем Flexbox для центрирования */
+    justify-content: center; /* Центрируем содержимое по горизонтали */
+    margin-top: 20px; /* Отступ сверху */
+}
+
+.logout-container button {
+    padding: 10px 15px; /* Внутренние отступы для кнопки */
+    background-color: white; /* Белый фон кнопки */
+    color: black; /* Черный цвет текста */
+    border: 1px solid black; /* Черная рамка */
+    border-radius: 4px; /* Закругленные углы */
+    cursor: pointer; /* Указатель при наведении */
+    transition: background-color 0.3s, color 0.3s; /* Плавный переход для фона и цвета */
+}
+
+/* Стили для кнопки при наведении */
+.logout-container button:hover {
+    background-color: #e0e0e0; /* Серый цвет фона при наведении */
+    color: black; /* Цвет текста остается черным */
+}
+
+.edit-profile-container {
+    margin-bottom: 50px; /* Отступ сверху для отделения от предыдущего блока */
+    text-align: center; /* Центрирование кнопки */
+}
+
+.edit-button {
+    padding: 10px 15px; /* Внутренние отступы для кнопки */
+    background-color: white; /* Белый фон кнопки */
+    color: black; /* Черный цвет текста */
+    border: 1px solid black; /* Черная рамка */
+    border-radius: 4px; /* Закругленные углы */
+    cursor: pointer; /* Указатель при наведении */
+    transition: background-color 0.3s; /* Плавный переход для фона */
+}
+
+/* Стили для кнопки при наведении */
+.edit-button:hover {
+    background-color: #e0e0e0; /* Серый цвет фона при наведении */
+    color: black; /* Цвет текста остается черным */
+}

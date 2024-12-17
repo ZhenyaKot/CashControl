@@ -1,0 +1,366 @@
+{% load static %}
+
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Отчеты</title>
+    <link rel="stylesheet" href="{% static 'deps/css/home/reports.css' %}"> <!-- Подключение стилевого файла -->
+    <link rel="stylesheet" href="{% static 'deps/css/home/modal/reports_by_category_modal.css' %}">
+    <!-- Подключение стилевого файла -->
+</head>
+<body>
+<div class="container">
+
+    <nav class="sidebar">
+        <ul>
+            <li><a href="{% url 'home:profile' %}"><img src="{% static '/deps/icons/profile_24.png' %}" alt="Профиль">
+                Профиль</a></li>
+            <li><a href="{% url 'home:facial' %}"><img src="{% static '/deps/icons/home_24.png' %}" alt="главная">
+                Главная</a></li>
+            <li><a href="{% url 'home:categories' %}"><img src="{% static '/deps/icons/category_24.png' %}"
+                                                           alt="Категории">
+                Категории</a></li>
+            <li><a href="{% url 'home:transactions' %}"><img src="{% static '/deps/icons/transactions_24.png' %}"
+                                                             alt="Транзакции">
+                Транзакции</a></li>
+            <li><a href="{% url 'home:reports' %}"><img src="{% static '/deps/icons/reports_24.png' %}" alt="Отчеты">
+                Отчеты</a></li>
+            <li><a href="#analytics"><img src="{% static '/deps/icons/analysts_24.png' %}" alt="Аналитика">
+                Аналитика</a></li>
+            <li><a href="#settings"><img src="{% static '/deps/icons/settings_24.png' %}" alt="Настройки"> Настройки</a>
+            </li>
+        </ul>
+    </nav>
+
+    <div class="main-content">
+        <h1>Отчеты</h1>
+        <div class="reports-container">
+
+            <!-- Общие затраты за день -->
+            <div class="report-section">
+                <button class="toggle-button" onclick="toggleReport('daily-expenses')">Общие затраты за день</button>
+                <div id="daily-expenses" class="report-content" style="display:none;">
+                    <h3>Общие затраты за день</h3>
+                    <p>Сумма расходов: <strong>500 руб.</strong></p>
+
+                    <!-- Секция транзакций -->
+                    <div class="transactions-section">
+                        <h2>Последние транзакции</h2>
+                        <div class="filter-sort-container">
+                            <button class="icon-button" onclick="filterTransactions()" title="Фильтровать">
+                                <img src="{% static '/deps/icons/filter_24.png' %}" alt="Фильтровать" width="20"> Фильтр
+                            </button>
+
+                            <button class="icon-button" onclick="sortTransactions()" title="Сортировать">
+                                <img src="{% static '/deps/icons/sorting_24.png' %}" alt="Сортировать" width="20">
+                                Сортировка
+                            </button>
+                        </div>
+                        <div class="transactions-list" id="transactions-list">
+                            <div class="transaction-item">
+                                <div class="transaction-details">
+                                    <span>Трата 1:</span> <strong>200 руб.</strong> - Куплено продуктов
+                                </div>
+                                <div class="transaction-actions">
+                                    <button class="action-button" onclick="editTransaction(1)" title="Редактировать">
+                                        <img src="{% static '/deps/icons/edit_24.png' %}" alt="Редактировать"
+                                             width="20">
+                                    </button>
+                                    <button class="action-button" onclick="deleteTransaction(1)" title="Удалить">
+                                        <img src="{% static '/deps/icons/delete_24.png' %}" alt="Удалить" width="20">
+                                    </button>
+                                </div>
+                            </div>
+
+                            <div class="transaction-item">
+                                <div class="transaction-details">
+                                    <span>Трата 2:</span> <strong>150 руб.</strong> - Обед в кафе
+                                </div>
+                                <div class="transaction-actions">
+                                    <button class="action-button" onclick="editTransaction(2)" title="Редактировать">
+                                        <img src="{% static '/deps/icons/edit_24.png' %}" alt="Редактировать"
+                                             width="20">
+                                    </button>
+                                    <button class="action-button" onclick="deleteTransaction(2)" title="Удалить">
+                                        <img src="{% static '/deps/icons/delete_24.png' %}" alt="Удалить" width="20">
+                                    </button>
+                                </div>
+                            </div>
+
+                            <div class="transaction-item">
+                                <div class="transaction-details">
+                                    <span>Трата 3:</span> <strong>100 руб.</strong> - Транспортные расходы
+                                </div>
+                                <div class="transaction-actions">
+                                    <button class="action-button" onclick="editTransaction(3)" title="Редактировать">
+                                        <img src="{% static '/deps/icons/edit_24.png' %}" alt="Редактировать"
+                                             width="20">
+                                    </button>
+                                    <button class="action-button" onclick="deleteTransaction(3)" title="Удалить">
+                                        <img src="{% static '/deps/icons/delete_24.png' %}" alt="Удалить" width="20">
+                                    </button>
+                                </div>
+                            </div>
+
+                            <div class="transaction-item">
+                                <div class="transaction-details">
+                                    <span>Трата 4:</span> <strong>50 руб.</strong> - Коммунальные платежи
+                                </div>
+                                <div class="transaction-actions">
+                                    <button class="action-button" onclick="editTransaction(4)" title="Редактировать">
+                                        <img src="{% static '/deps/icons/edit_24.png' %}" alt="Редактировать"
+                                             width="20">
+                                    </button>
+                                    <button class="action-button" onclick="deleteTransaction(4)" title="Удалить">
+                                        <img src="{% static '/deps/icons/delete_24.png' %}" alt="Удалить" width="20">
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Место для графика трат по категориям -->
+                    <h4>График трат по категориям:</h4>
+                    <div id="daily-expenses-chart"
+                         style="height: 300px; border: 1px solid #ccc; border-radius: 5px; background: #f9f9f9;">
+                        <!-- График будет отображаться здесь -->
+                        <p style="text-align: center; padding: 100px 0; color: #777;">Здесь будет график трат по
+                            категориям...</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Отчеты по категориям -->
+            <div class="report-section">
+                <button class="toggle-button" onclick="toggleReport('monthly-expenses')">Отчеты по категориям</button>
+                <div id="monthly-expenses" class="report-content" style="display:none;">
+                    <h3>Общие затраты за месяц</h3>
+
+                    <div class="filter-sort-container">
+                        <button class="icon-button" onclick="filterTransactions()" title="Фильтровать">
+                            <img src="{% static '/deps/icons/filter_24.png' %}" alt="Фильтровать" width="20"> Фильтр
+                        </button>
+
+                        <button class="icon-button" onclick="sortTransactions()" title="Сортировать">
+                            <img src="{% static '/deps/icons/sorting_24.png' %}" alt="Сортировать" width="20">
+                            Сортировка
+                        </button>
+                    </div>
+
+                    <p>Сумма расходов: <strong>15,000 руб.</strong></p>
+
+                    <!-- Список категорий с затратами -->
+                    <h4>Категории расходов:</h4>
+                    <ul class="category-list">
+                        <li onclick="showCategoryExpenses('food')">Продукты: <strong>6,000 руб.</strong></li>
+                        <li onclick="showCategoryExpenses('transportation')">Транспорт: <strong>2,500 руб.</strong></li>
+                        <li onclick="showCategoryExpenses('utilities')">Коммунальные услуги: <strong>1,200 руб.</strong>
+                        </li>
+                        <li onclick="showCategoryExpenses('entertainment')">Развлечения: <strong>2,200 руб.</strong>
+                        </li>
+                        <li onclick="showCategoryExpenses('other')">Прочие расходы: <strong>3,100 руб.</strong></li>
+                    </ul>
+
+                    <!-- Место для графика трат по категориям -->
+                    <h4>График трат по категориям за месяц:</h4>
+                    <div id="monthly-expenses-chart"
+                         style="height: 300px; border: 1px solid #ccc; border-radius: 5px; background: #f9f9f9;">
+                        <p style="text-align: center; padding: 100px 0; color: #777;">Здесь будет график трат по
+                            категориям за месяц...</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Модальное окно отчетов по категориям -->
+            <div id="expenses-modal" class="modal" style="display:none;">
+                <div class="modal-content">
+                    <span class="close" onclick="closeExpensesModal()">&times;</span>
+
+
+                    <!-- Вкладки -->
+                    <div class="tabs">
+                        <button class="tab-button active" onclick="openTab('expensesTab')">Расходы</button>
+                        <button class="tab-button" onclick="openTab('chartsTab')">Графики</button>
+                    </div>
+
+                    <!-- Контент вкладок -->
+                    <div id="expensesTab" class="tab-content active">
+                        <h3 id="modal-title">Затраты по категории</h3>
+                        <div class="filter-sort-container">
+                            <button class="icon-button" onclick="filterDailyExpenses()" title="Фильтровать">
+                                <img src="{% static '/deps/icons/filter_24.png' %}" alt="Фильтровать" width="20"> Фильтр
+                            </button>
+                            <button class="icon-button" onclick="sortDailyExpenses()" title="Сортировать">
+                                <img src="{% static '/deps/icons/sorting_24.png' %}" alt="Сортировать" width="20">
+                                Сортировка
+                            </button>
+                        </div>
+                        <p>Траты за месяц:</p>
+                        <ul id="daily-expenses-list" class="daily-expenses-list">
+                            <li>01-01-2022: <strong>500 руб.</strong></li>
+                            <li>02-01-2022: <strong>1000 руб.</strong></li>
+                            <li>03-01-2022: <strong>1500 руб.</strong></li>
+                            <li>04-01-2022: <strong>200 руб.</strong></li>
+                            <li>05-01-2022: <strong>800 руб.</strong></li>
+                        </ul>
+                    </div>
+
+                    <!-- Вкладка графиков -->
+                    <div id="chartsTab" class="tab-content">
+                        <h4 class="chart-title">График Расходов</h4>
+                        <div class="chart-container">
+                            <!-- Место для графика: можно добавить изображение графика вместо canvas -->
+                            <p style="color: #777;">Здесь будет график (замените tent для графика)</p>
+                            <!-- Можно заменить на изображение статического графика -->
+                            <img src="placeholder_chart.png" alt="Placeholder for Pie Chart"
+                                 style="max-width: 100%; max-height: 100%;">
+                        </div>
+                        <p style="text-align: center; padding: 10px; color: #777;">Здесь будет круговая диаграмма
+                            сравнения расходов за текущий месяц и за год...</p>
+                    </div>
+                </div>
+            </div>
+
+
+            <!-- Отчеты по доходам -->
+            <div class="report-section">
+                <button class="toggle-button" onclick="toggleReport('income-reports')">Отчеты по доходам</button>
+                <div id="income-reports" class="report-content" style="display:none;">
+                    <h3>Отчеты по доходам</h3>
+
+
+                    <!-- Общая сумма доходов -->
+                    <p>Общая сумма доходов за текущий месяц: <strong>20,000 руб.</strong></p>
+
+                    <div class="filter-sort-container">
+                        <button class="icon-button" onclick="filterIncomeTransactions()" title="Фильтровать">
+                            <img src="{% static '/deps/icons/filter_24.png' %}" alt="Фильтровать" width="20"> Фильтр
+                        </button>
+                        <button class="icon-button" onclick="sortIncomeTransactions()" title="Сортировать">
+                            <img src="{% static '/deps/icons/sorting_24.png' %}" alt="Сортировать" width="20">
+                            Сортировка
+                        </button>
+                    </div>
+
+                    <!-- Доходы по месяцам с рамкой -->
+                    <h4>Доходы по месяцам:</h4>
+                    <div class="monthly-income-container">
+                        <ul class="monthly-income-list">
+                            <li onclick="openIncomeReportsModal(); viewIncomeDetails('Январь')">Январь: <strong>20,000
+                                руб.</strong></li>
+                            <li onclick="openIncomeReportsModal(); viewIncomeDetails('Февраль')">Февраль: <strong>18,000
+                                руб.</strong></li>
+                            <li onclick="openIncomeReportsModal(); viewIncomeDetails('Март')">Март: <strong>22,500
+                                руб.</strong></li>
+                            <li onclick="openIncomeReportsModal(); viewIncomeDetails('Апрель')">Апрель: <strong>21,000
+                                руб.</strong></li>
+                            <li onclick="openIncomeReportsModal(); viewIncomeDetails('Май')">Май: <strong>19,000
+                                руб.</strong></li>
+                        </ul>
+                    </div>
+
+                    <!-- Графики -->
+                    <div class="charts-container"
+                         style="display: flex; justify-content: space-between; margin-top: 20px;">
+                        <div class="chart-wrapper" style="flex: 1; margin-right: 10px;">
+                            <h4 class="chart-title">График доходов по месяцам</h4>
+                            <div class="chart-container">
+                                <img src="placeholder_income_categories_chart.png"
+                                     alt="Placeholder for Income by Categories Chart"
+                                     style="max-width: 100%; max-height: 100%;">
+                            </div>
+                        </div>
+                        <div class="chart-wrapper" style="flex: 1; margin-left: 10px;">
+                            <h4 class="chart-title">процентное соотношение доходов</h4>
+                            <div class="chart-container">
+                                <img src="placeholder_income_comparison_chart.png"
+                                     alt="Placeholder for Income Comparison Chart"
+                                     style="max-width: 100%; max-height: 100%;">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Модальное окно отчетов по доходам -->
+            <div id="income-reports-modal" class="modal" style="display:none;">
+                <div class="modal-content">
+                    <span class="close" onclick="closeIncomeReportsModal()">&times;</span>
+
+                    <!-- Вкладки -->
+                    <div class="tabs">
+                        <button class="tab-button active" onclick="openTab('incomeTab')">Доходы</button>
+                        <button class="tab-button" onclick="openTab('incomeChartsTab')">График</button>
+                    </div>
+
+                    <!-- Контент вкладки "Доходы" -->
+                    <div id="incomeTab" class="tab-content active">
+                        <h3 id="modal-title-income ">Категории доходов</h3>
+                        <div class="filter-sort-container">
+                            <button class="icon-button" onclick="filterIncomeCategories()" title="Фильтровать">
+                                <img src="{% static '/deps/icons/filter_24.png' %}" alt="Фильтровать" width="20"> Фильтр
+                            </button>
+                            <button class="icon-button" onclick="sortIncomeCategories()" title="Сортировать">
+                                <img src="{% static '/deps/icons/sorting_24.png' %}" alt="Сортировать" width="20">
+                                Сортировка
+                            </button>
+                        </div>
+                        <p>Доходы за этот месяц:</p>
+                        <ul id="monthly-income-list" class="monthly-income-list">
+                            <li>Заработная плата: <strong>50,000 руб.</strong></li>
+                            <li>Дополнительный доход: <strong>10,000 руб.</strong></li>
+                            <li>Инвестиции: <strong>5,000 руб.</strong></li>
+                            <li>Фриланс: <strong>8,000 руб.</strong></li>
+                            <li>Прочие доходы: <strong>2,000 руб.</strong></li>
+                        </ul>
+
+                        <!-- Общая сумма доходов за месяц -->
+                        <div class="total-income">
+                            <p>Общий доход за этот месяц: <strong>75,000 руб.</strong></p>
+                        </div>
+                    </div>
+
+                    <!-- Контент вкладки "График" -->
+                    <div id="incomeChartsTab" class="tab-content">
+                        <h4 class="chart-title">График доходов</h4>
+                        <div class="chart-container">
+                            <p style="color: #777;">Здесь будет график доходов по категориям за текущий месяц.</p>
+                            <!-- Место для графика -->
+                            <img src="placeholder_income_chart.png" alt="Placeholder for Income Chart"
+                                 style="max-width: 100%; max-height: 100%;">
+                        </div>
+                        <p style="text-align: center; padding: 10px; color: #777;">Здесь будет график, генерируемый с
+                            помощью Python.</p>
+                    </div>
+                </div>
+            </div>
+
+
+        </div> <!-- reports-container -->
+    </div> <!-- main-content -->
+
+</div> <!-- container -->
+
+<script>
+    function toggleReport(reportId) {
+        const content = document.getElementById(reportId);
+        content.style.display = (content.style.display === 'none' || content.style.display === '') ? 'block' : 'none';
+    }
+
+
+
+
+
+
+
+
+
+
+
+
+</script>
+
+<script src="{% static 'deps/javascript/transactions.js' %}"></script>
+</body>
+</html>

@@ -10,8 +10,8 @@
 </head>
 <body>
     <div class="header">
-        <a href="#login">Войти</a>
-        <a href="#register">Регистрация</a>
+        <a href="{% url 'user:login' %}">Войти</a>
+        <a href="{% url 'user:registration' %}">Регистрация</a>
     </div>
     <div class="site-title">
         CashControl
@@ -22,7 +22,7 @@
     <div class="description">
         С нашим трекером вы сможете контролировать свои расходы и доходы, как настоящий финансовый гуру. Не дайте деньгам ускользнуть!
     </div>
-    <button class="start-button">Начать сейчас</button>
+    <a href="{% url 'user:login' %}" class="start-button">Начать сейчас</a>
 
 
 <section class="features">

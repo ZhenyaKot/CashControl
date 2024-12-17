@@ -6,31 +6,60 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Регистрация</title>
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;600&display=swap"> <!-- Подключение шрифта Open Sans -->
-    <link rel="stylesheet" href="{% static 'deps/css/login.css' %}"> <!-- Подключите ваш CSS-файл -->
+    <link rel="stylesheet" href="{% static 'deps/css/register.css' %}"> <!-- Подключите ваш CSS-файл -->
 </head>
 <body>
 
 <div class="form-container">
     <h2>Регистрация</h2>
-    <form>
+    <form action="{% url 'user:registration' %}" method="post">
+        {% csrf_token %}
         <div class="form-group">
-            <label for="username">Имя пользователя</label>
-            <input type="text" id="username" name="username" required>
+            <label for="username_id">Имя пользователя</label>
+            <input type="text" id="username_id"
+                   value="{% if form.username.value %}{{form.username.value}}{% endif %}"
+                   name="username"
+                   placeholder="Введите логин"
+                   required>
+            {% if form.username.errors %}
+            <div class="alert alert-danger"> {{form.username.errors}} </div>
+            {% endif %}
         </div>
         <div class="form-group">
-            <label for="email">Электронная почта</label>
-            <input type="text" id="email" name="email" required>
+            <label for="email_id">Электронная почта</label>
+            <input type="text" id="email_id"
+                   value="{% if form.email.value %}{{form.email.value}}{% endif %}"
+                   name="email"
+                   placeholder="Введите ваш email"
+                   required>
+            {% if form.email.errors %}
+            <div class="alert alert-danger"> {{form.email.errors}} </div>
+            {% endif %}
         </div>
         <div class="form-group">
-            <label for="password">Пароль</label>
-            <input type="password" id="password" name="password" required>
+            <label for="password1_id">Пароль</label>
+            <input type="password" id="password1_id"
+                   value="{% if form.password1.value %}{{form.password1.value}}{% endif %}"
+                   name="password1"
+                   placeholder="Введите пароль"
+                   required>
+            {% if form.password1.errors %}
+            <div class="alert alert-danger"> {{form.password1.errors}} </div>
+            {% endif %}
         </div>
         <div class="form-group">
-            <label for="confirm_password">Подтверждение пароля</label>
-            <input type="password" id="confirm_password" name="confirm_password" required>
+            <label for="password2_id">Подтверждение пароля</label>
+            <input type="password" id="password2_id"
+                   value="{% if form.password2.value %}{{form.password2.value}}{% endif %}"
+                   name="password2"
+                   placeholder="Введите пароль еще раз"
+                   required>
+            {% if form.password2.errors %}
+            <div class="alert alert-danger"> {{form.password2.errors}} </div>
+            {% endif %}
         </div>
         <button type="submit">Зарегистрироваться</button>
-        <a href="index.html" class="register-link">Уже есть учетная запись? Войти</a>
+        <a href="{% url 'user:login' %}" class="register-link">Уже есть учётная запись? Войти</a>
     </form>
 </div>
 

@@ -1,0 +1,202 @@
+{% load static %}
+
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Профиль</title>
+    <link rel="stylesheet" href="{% static 'deps/css/home/profile.css' %}"> <!-- Подключение стилевого файла -->
+</head>
+<body>
+<div class="container">
+
+    <nav class="sidebar">
+        <ul>
+            <li><a href="{% url 'home:profile' %}"><img src="{% static '/deps/icons/profile_24.png' %}" alt="Профиль">
+                Профиль</a></li>
+            <li><a href="{% url 'home:facial' %}"><img src="{% static '/deps/icons/home_24.png' %}" alt="главная">
+                Главная</a></li>
+            <li><a href="{% url 'home:categories' %}"><img src="{% static '/deps/icons/category_24.png' %}"
+                                                           alt="Категории">
+                Категории</a></li>
+            <li><a href="{% url 'home:transactions' %}"><img src="{% static '/deps/icons/transactions_24.png' %}"
+                                                             alt="Транзакции">
+                Транзакции</a></li>
+            <li><a href="{% url 'home:reports' %}"><img src="{% static '/deps/icons/reports_24.png' %}" alt="Отчеты">
+                Отчеты</a></li>
+            <li><a href="#analytics"><img src="{% static '/deps/icons/analysts_24.png' %}" alt="Аналитика">
+                Аналитика</a></li>
+            <li><a href="#settings"><img src="{% static '/deps/icons/settings_24.png' %}" alt="Настройки"> Настройки</a>
+            </li>
+        </ul>
+    </nav>
+
+    <div class="main-content">
+        <h1>
+            CashControl <img src="{% static '/deps/icons/logo_32.png' %}" class="logo">
+        </h1>
+        <h2>Профиль</h2>
+
+        <div class="profile-container">
+            <div class="profile-photo">
+                <input type="file" id="photo-upload" accept="image/*" onchange="previewImage(event)"
+                       style="display:none;">
+                <img id="profile-picture" src="{% static '/deps/images/default_avatar.png' %}" alt="Загрузка фотографии"
+                     onclick="document.getElementById('photo-upload').click()">
+                <p>Нажмите для загрузки фотографии</p>
+            </div>
+
+            <div class="user-info">
+                <div class="form-group">
+                    <label for="full-name">Полное имя:</label>
+                    <input type="text" id="full-name" value="Ваше имя" readonly>
+                </div>
+                <div class="form-group">
+                    <label for="email">Электронная почта:</label>
+                    <input type="email" id="email" value="example@example.com" readonly>
+                </div>
+                <div class="form-group">
+                    <label for="phone">Телефон:</label>
+                    <input type="tel" id="phone" value="+7 123 456 78 90" readonly>
+                </div>
+                <div class="form-group">
+                    <label for="dob">Дата рождения:</label>
+                    <input type="date" id="dob" value="1990-01-01" readonly>
+                </div>
+            </div>
+        </div>
+
+        <!-- Кнопка "Редактировать профиль" -->
+        <div class="edit-profile-container">
+            <button class="edit-button" type="button" onclick="editProfile()">Редактировать профиль</button>
+        </div>
+
+        <div class="settings-section">
+            <button class="toggle-button" onclick="toggleContent('security-settings')">Настройки безопасности</button>
+            <div id="security-settings" class="content">
+                <div class="settings-item">
+                    <button type="button" onclick="showChangePassword()">Смена пароля</button>
+                    <div id="change-password" style="display:none;">
+                        <label for="new-password">Новый пароль:</label>
+                        <input type="password" id="new-password" placeholder="Введите новый пароль">
+                        <button type="button" onclick="changePassword()">Сохранить пароль</button>
+                    </div>
+                </div>
+                <div class="settings-item">
+                    <button type="button" onclick="toggle2FA()">Двухфакторная аутентификация</button>
+                    <div id="2fa-settings" style="display:none;">
+                        <p>Настройте двухфакторную аутентификацию.</p>
+                        <button type="button" onclick="enable2FA()">Включить</button>
+                    </div>
+                </div>
+                <div class="settings-item">
+                    <button type="button" onclick="manageSessions()">Управление активными сессиями</button>
+                    <div id="session-management" style="display:none;">
+                        <p>Просмотр активных сессий.</p>
+                        <ul>
+                            <li>Сессия 1 - последний вход: 12.01.2024 10:00</li>
+                            <li>Сессия 2 - последний вход: 11.01.2024 14:00</li>
+                            <li>
+                                <button type="button" onclick="logoutOther()">Выход</button>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="settings-section">
+            <button class="toggle-button" onclick="toggleContent('notification-preferences')">Уведомления и
+                предпочтения
+            </button>
+            <div id="notification-preferences" class="content">
+                <div class="settings-item">
+                    <label><input type="checkbox" id="email-notifications"> Получать уведомления на почту</label>
+                </div>
+                <div class="settings-item">
+                    <label for="theme-select">Тема оформления:</label>
+                    <select id="theme-select" onchange="changeTheme()">
+                        <option value="light">Светлая</option>
+                        <option value="dark">Темная</option>
+                    </select>
+                </div>
+                <div class="settings-item">
+                    <label for="language-select">Язык интерфейса:</label>
+                    <select id="language-select" onchange="changeLanguage()">
+                        <option value="ru">Русский</option>
+                        <option value="en">English</option>
+                    </select>
+                </div>
+            </div>
+        </div>
+
+        <div class="settings-section">
+            <button class="toggle-button" onclick="toggleContent('financial-info')">Финансовая информация</button>
+            <div id="financial-info" class="content">
+                <div class="settings-item">
+                    <button type="button" onclick="viewBankAccounts()">Банковские реквизиты</button>
+                    <div id="bank-accounts" style="display:none;">
+                        <p>Просмотр и редактирование банковских реквизитов.</p>
+                        <button type="button" onclick="addBankAccount()">Добавить новый реквизит</button>
+                    </div>
+                </div>
+                <div class="settings-item">
+                    <button type="button" onclick="viewPaymentMethods()">Методы оплаты</button>
+                    <div id="payment-methods" style="display:none;">
+                        <p>Просмотр и редактирование методов оплаты.</p>
+                    </div>
+                </div>
+                <div class="settings-item">
+                    <button type="button" onclick="setBudgetGoals()">Бюджетные цели</button>
+                    <div id="budget-goals" style="display:none;">
+                        <p>Установка и отслеживание бюджетных целей.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="settings-section">
+            <button class="toggle-button" onclick="toggleContent('support')">Поддержка</button>
+            <div id="support" class="content">
+                <div class="settings-item">
+                    <button type="button" onclick="openHelpCenter()">Справочный центр</button>
+                    <div id="help-center" style="display:none;">
+                        <p>Доступ к часто задаваемым вопросам.</p>
+                    </div>
+                </div>
+                <div class="settings-item">
+                    <button type="button" onclick="giveFeedback()">Обратная связь</button>
+                    <div id="feedback" style="display:none;">
+                        <p>Форма для обратной связи.</p>
+                    </div>
+                </div>
+                <div class="settings-item">
+                    <button type="button" onclick="chatSupport()">Чат с поддержкой</button>
+                    <div id="chat-support" style="display:none;">
+                        <p>Начните чат с нашей службой поддержки.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="logout-container">
+            <button type="button" onclick="logout()">Выход из аккаунта</button>
+        </div>
+    </div>
+</div>
+
+<script>
+    // Здесь должен быть ваш JavaScript-код
+    function toggleContent(contentId) {
+        const content = document.getElementById(contentId);
+        content.style.display = (content.style.display === 'none' || content.style.display === '') ? 'block' : 'none';
+    }
+
+    // Другие функции JavaScript...
+
+
+
+
+</script>
+</body>
+</html>

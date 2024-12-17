@@ -14,12 +14,22 @@
 <div class="container">
     <nav class="sidebar">
         <ul>
-            <li><a href="#profile"><img src="{% static '/deps/icons/profile_24.png' %}" alt="Профиль"> Профиль</a></li>
-            <li><a href="#categories"><img src="{% static '/deps/icons/category_24.png' %}" alt="Категории"> Категории</a></li>
-            <li><a href="#transactions"><img src="{% static '/deps/icons/transactions_24.png' %}" alt="Транзакции"> Транзакции</a></li>
-            <li><a href="#reports"><img src="{% static '/deps/icons/reports_24.png' %}" alt="Отчеты"> Отчеты</a></li>
-            <li><a href="#analytics"><img src="{% static '/deps/icons/analysts_24.png' %}" alt="Аналитика"> Аналитика</a></li>
-            <li><a href="#settings"><img src="{% static '/deps/icons/settings_24.png' %}" alt="Настройки"> Настройки</a></li>
+            <li><a href="{% url 'home:profile' %}"><img src="{% static '/deps/icons/profile_24.png' %}" alt="Профиль">
+                Профиль</a></li>
+            <li><a href="{% url 'home:facial' %}"><img src="{% static '/deps/icons/home_24.png' %}" alt="главная">
+                Главная</a></li>
+            <li><a href="{% url 'home:categories' %}"><img src="{% static '/deps/icons/category_24.png' %}"
+                                                           alt="Категории">
+                Категории</a></li>
+            <li><a href="{% url 'home:transactions' %}"><img src="{% static '/deps/icons/transactions_24.png' %}"
+                                                             alt="Транзакции">
+                Транзакции</a></li>
+            <li><a href="{% url 'home:reports' %}"><img src="{% static '/deps/icons/reports_24.png' %}" alt="Отчеты">
+                Отчеты</a></li>
+            <li><a href="#analytics"><img src="{% static '/deps/icons/analysts_24.png' %}" alt="Аналитика">
+                Аналитика</a></li>
+            <li><a href="#settings"><img src="{% static '/deps/icons/settings_24.png' %}" alt="Настройки"> Настройки</a>
+            </li>
         </ul>
     </nav>
 
@@ -64,16 +74,6 @@
 
 </body>
 </html>
-
-
-
-
-
-
-
-
-
-
 
 
 <!--{% load static %}-->

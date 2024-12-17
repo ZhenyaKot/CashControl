@@ -1,0 +1,109 @@
+{% load static %}
+
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Управление транзакциями</title>
+    <link rel="stylesheet" href="{% static 'deps/css/home/transactions.css' %}"> <!-- Подключение стилевого файла -->
+</head>
+<body>
+<div class="container">
+    <nav class="sidebar">
+        <ul>
+            <li><a href="{% url 'home:profile' %}"><img src="{% static '/deps/icons/profile_24.png' %}" alt="Профиль">
+                Профиль</a></li>
+            <li><a href="{% url 'home:facial' %}"><img src="{% static '/deps/icons/home_24.png' %}" alt="главная">
+                Главная</a></li>
+            <li><a href="{% url 'home:categories' %}"><img src="{% static '/deps/icons/category_24.png' %}"
+                                                           alt="Категории">
+                Категории</a></li>
+            <li><a href="{% url 'home:transactions' %}"><img src="{% static '/deps/icons/transactions_24.png' %}"
+                                                             alt="Транзакции">
+                Транзакции</a></li>
+            <li><a href="{% url 'home:reports' %}"><img src="{% static '/deps/icons/reports_24.png' %}" alt="Отчеты">
+                Отчеты</a></li>
+            <li><a href="#analytics"><img src="{% static '/deps/icons/analysts_24.png' %}" alt="Аналитика">
+                Аналитика</a></li>
+            <li><a href="#settings"><img src="{% static '/deps/icons/settings_24.png' %}" alt="Настройки"> Настройки</a>
+            </li>
+        </ul>
+    </nav>
+
+    <div class="main-content">
+        <h1 class="header">
+            CashControl <img src="{% static '/deps/icons/logo_32.png' %}" class="logo">
+        </h1>
+        <h2>Управление транзакциями</h2>
+
+        <div id="today-summary">
+            <h3>Сегодняшний баланс</h3>
+            <p>Доходы: <span id="today-income" class="income-value">0.00</span> ₽</p>
+            <p>Расходы: <span id="today-expense" class="expense-value">0.00</span> ₽</p>
+        </div>
+
+        <div class="button-container">
+            <button class="big-button" onclick="showAddTransactionForm()">Добавить транзакцию</button>
+            <button class="secondary-button" onclick="importTransactions()">Импортировать транзакции</button>
+            <button class="secondary-button" onclick="exportTransactions()">Экспортировать транзакции</button>
+        </div>
+
+        <div id="modal" class="modal">
+            <div class="modal-content">
+                <span class="close" onclick="hideAddTransactionForm()">&times;</span>
+                <h2 id="transaction-type-header">Добавить транзакцию</h2>
+                <div class="tabs">
+                    <button id="expense-tab" class="tab" onclick="selectTransactionType('expense')">Расход</button>
+                    <button id="income-tab" class="tab" onclick="selectTransactionType('income')">Доход</button>
+                </div>
+                <form onsubmit="addTransaction(event)">
+                    <input type="date" id="transaction-date" required>
+                    <input type="number" id="transaction-amount" placeholder="Сумма" required>
+                    <select id="transaction-category" style="display: none;">
+                        <option value="food">Еда</option>
+                        <option value="transport">Транспорт</option>
+                        <option value="entertainment">Развлечения</option>
+                        <option value="other">Прочее</option>
+                    </select>
+                    <input type="text" id="transaction-description" placeholder="Описание" required>
+
+                    <!-- Поле выбора метода оплаты -->
+                    <select id="payment-method" required>
+                        <option value="" disabled selected>Выберите метод оплаты</option>
+                        <option value="cash">Н наличные</option>
+                        <option value="credit_card">Кредитная карта</option>
+                        <option value="debit_card">Дебетовая карта</option>
+                        <option value="transfer">Банковский перевод</option>
+                    </select>
+
+                    <!-- Поле загрузки квитанции -->
+                    <label for="receipt-upload">Загрузить квитанцию (по желанию):</label>
+                    <input type="file" id="receipt-upload" accept="image/*">
+
+                    <button type="submit">Сохранить</button>
+                </form>
+            </div>
+        </div>
+
+        <!-- Секция для последних транзакций -->
+        <div class="transactions-section">
+            <h2>Последние транзакции</h2>
+            <div class="filter-sort-container">
+                <button class="icon-button" onclick="filterTransactions()" title="Фильтровать">
+                    <img src="{% static '/deps/icons/filter_24.png' %}" alt="Фильтровать" width="20"> Фильтр
+                </button>
+
+                <button class="icon-button" onclick="sortTransactions()" title="Сортировать">
+                    <img src="{% static '/deps/icons/sorting_24.png' %}" alt="Сортировать" width="20"> Сортировка
+                </button>
+            </div>
+            <div class="transactions-list" id="transactions-list">
+                <!-- Список транзакций будет динамически заполнен здесь -->
+            </div>
+        </div>
+    </div>
+</div>
+
+<script src="{% static 'deps/javascript/transactions.js' %}"></script>
+</body>
+</html>

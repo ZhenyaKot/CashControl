@@ -1,0 +1,225 @@
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f4f4f9;
+    color: #333;
+    margin: 0;
+    padding: 0;
+}
+
+.container {
+    display: flex; /* Используем flexbox для расположения sidebar и контента */
+}
+
+.sidebar {
+    width: 130px; /* Боковое меню */
+    background-color: #f4f4f4; /* Цвет фона */
+    padding: 20px; /* Внутренние отступы */
+    box-shadow: 2px 0 5px rgba(0, 0, 0, 0.1);
+}
+
+.sidebar ul {
+    list-style: none;
+    padding: 0;
+}
+
+.sidebar ul li {
+    margin-bottom: 15px;
+}
+
+.sidebar ul li a {
+    text-decoration: none;
+    color: #333;
+    padding: 10px;
+    display: block;
+    border-radius: 3px;
+    transition: background-color 0.3s;
+}
+
+.sidebar ul li a:hover {
+    background-color: #e0e0e0;
+}
+
+.main-content {
+    flex: 1; /* Основной контент занимает оставшееся пространство */
+    padding: 20px;
+    background-color: white; /* Фон основного контента */
+    margin-left: 20px; /* Отступ слева для разделения с сайдбаром */
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+h1 {
+    text-align: center; /* Центрируем заголовок */
+    margin-bottom: 20px; /* Отступ снизу */
+}
+
+.report-section {
+    margin-bottom: 15px;
+}
+
+.toggle-button {
+    background-color: white; /* Белый фон */
+    border: 1px solid black; /* Черная рамка вокруг блока */
+    border-radius: 5px; /* Закругленные углы */
+    padding: 10px 15px; /* Внутренние отступы кнопки */
+    font-size: 16px; /* Размер шрифта кнопки */
+    cursor: pointer; /* Курсор указателя */
+    width: 100%; /* Кнопка занимает полную ширину */
+    text-align: left; /* Выравнивание текста влево */
+    transition: background-color 0.3s; /* Плавный эффект изменения цвета фона */
+    padding: 15px; /* Внутренние отступы */
+}
+
+.toggle-button:hover {
+    background-color: #e0e0e0; /* Серый фон при наведении */
+}
+
+.report-content {
+    padding: 10px; /* Внутренние отступы контента */
+    margin-top: 10px; /* Отступ сверху */
+    border: 1px solid #ccc; /* Рамка вокруг контента */
+    border-radius: 5px; /* Закругленные углы */
+    background: #f9f9f9; /* Цвет фона контента */
+}
+
+.transactions-section {
+    margin-top: 20px; /* Отступ сверху */
+    border: 1px solid #ddd; /* Рамка вокруг секции */
+    border-radius: 5px; /* Закругленные углы */
+    padding: 10px; /* Внутренние отступы секции */
+    background-color: #f9f9f9; /* Цвет фона секции */
+}
+
+.transactions-list {
+    list-style-type: none; /* Убираем маркеры у списка */
+    padding: 0; /* Убираем внутренние отступы у списка */
+    text-align: left; /* Выровнять текст влево */
+}
+
+.transaction-item {
+    display: flex; /* Используем flex для упрощения выравнивания */
+    justify-content: space-between; /* Максимальное пространство между текстом и кнопками */
+    align-items: center; /* Центрируем элементы по вертикали */
+    padding: 10px; /* Внутренние отступы для удобства */
+    border: 1px solid #ddd; /* Рамка вокруг каждой транзакции */
+    border-radius: 4px; /* Закругленные углы для элемента списка */
+    margin: 5px 0; /* Отступы между элементами списка */
+}
+
+.transaction-details {
+    flex-grow: 1; /* Заставляем текст занимать всё доступное пространство */
+    margin-right: 10px; /* Отступ справа между текстом и кнопками */
+}
+
+.transaction-actions {
+    display: flex; /* Расставляем кнопки в одну линию */
+}
+
+.action-button {
+    background: none; /* Убираем фон */
+    border: none; /* Убираем рамку */
+    cursor: pointer; /* Курсор в виде указателя */
+    margin-left: 5px; /* Отступ между кнопками */
+    padding: 0; /* Убираем внутренние отступы */
+}
+
+.action-button img {
+    vertical-align: middle; /* Вертикальное выравнивание изображений */
+}
+
+
+.action-button:hover {
+    opacity: 0.7; /* Эффект нажатия на кнопку */
+}
+
+.icon-button {
+    background: none; /* Без фона */
+    border: none; /* Без рамки */
+    cursor: pointer; /* Курсор в виде указателя */
+    margin-right: 10px; /* Отступ справа между кнопками */
+}
+
+.icon-button img {
+    vertical-align: middle; /* Вертикальное выравнивание изображений */
+}
+
+.icon-button:hover {
+    opacity: 0.6; /* Эффект нажатия на кнопку */
+}
+
+.category-list {
+    list-style-type: none; /* Убираем маркеры у списка */
+    padding: 0; /* Убираем внутренние отступы у списка */
+    margin: 0; /* Убираем внешние отступы у списка */
+}
+
+.category-list li {
+    cursor: pointer; /* Курсор указателя для кликабельных элементов */
+    padding: 10px; /* Внутренние отступы для удобства */
+    border: 1px solid #ddd; /* Рамка вокруг каждой категории */
+    border-radius: 4px; /* Закругленные углы */
+    margin: 5px 0; /* Отступы между элементами списка */
+    transition: background-color 0.3s; /* Плавный переход фона */
+}
+
+.category-list li:hover {
+    background-color: #e0e0e0; /* Изменение фона при наведении */
+}
+
+
+
+
+.close {
+    color: #aaa;
+    float: right; /* Позиционируем кнопку закрытия */
+    font-size: 28px;
+    font-weight: bold;
+}
+
+.close:hover,
+.close:focus {
+    color: black; /* Цвет при наведении */
+    text-decoration: none;
+    cursor: pointer; /* Курсор указателя */
+}
+
+
+/* CSS ДЛЯ ОТЧЕТЫ ПО ДОХОДАМ*/
+
+.monthly-income-container {
+    border: 1px solid #ccc; /* Рамка вокруг контейнера */
+    border-radius: 5px; /* Закругление углов */
+    background: #f9f9f9; /* Цвет фона контейнера */
+    padding: 15px; /* Внутренние отступы */
+    margin: 15px 0; /* Отступы вокруг контейнера */
+}
+
+/* Стили для списка доходов по месяцам */
+.monthly-income-list {
+    list-style-type: none; /* Убрать маркеры списка */
+    padding: 0; /* Убрать внутренние отступы */
+    margin: 0; /* Убрать внешние отступы */
+}
+
+.monthly-income-list li {
+    border: 1px solid #ddd; /* Рамка для каждого элемента списка */
+    border-radius: 4px; /* Закругление углов */
+    margin: 5px 0; /* Отступы между элементами списка */
+    padding: 10px; /* Внутренние отступы для элементов списка */
+    background: #f9f9f9; /* Цвет фона для элементов списка */
+    cursor: pointer; /* Курсор указателя для кликабельных элементов */
+    transition: background-color 0.3s; /* Плавный переход фона */
+}
+
+.monthly-income-list li:hover {
+    background-color: #e0e0e0; /* Цвет фона при наведении на элемент списка */
+}
+
+
+
+
+
+
+
+
+

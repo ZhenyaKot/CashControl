@@ -71,36 +71,17 @@ button:hover {
 }
 
 .alert {
-    padding: 15px; /* Внутренние отступы для удобства */
-    margin-bottom: 20px; /* Отступ снизу, чтобы отодвинуть другие элементы */
-    border: 1px solid transparent; /* Прозрачная рамка, чтобы не было смещения элементов */
-    border-radius: 4px; /* Уголки рамки */
-}
-
-/* Стиль для успешных сообщений */
-.alert-success {
-    color: #155724; /* Цвет текста */
-    background-color: #d4edda; /* Цвет фона */
-    border-color: #c3e6cb; /* Цвет рамки */
+    padding: 15px; /* Внутренние отступы для лучшего восприятия сообщения */
+    margin-bottom: 20px; /* Отступ вниз, чтобы отделить от других элементов */
+    border-radius: 4px; /* Закругление углов */
+    border: 1px solid transparent; /* База для границы (прозрачная, пока не будет применена ошибка) */
 }
 
 /* Стиль для сообщений об ошибках */
-.alert-error {
-    color: #721c24; /* Цвет текста */
-    background-color: #f8d7da; /* Цвет фона */
-    border-color: #f5c6cb; /* Цвет рамки */
+.alert-danger {
+    color: #721c24; /* Цвет текста (темно-красный) */
+    background-color: #f8d7da; /* Светло-красный фон */
+    border-color: #f5c6cb; /* Цвет рамки (светло-красный) */
 }
 
-/* Стиль для предупреждений */
-.alert-warning {
-    color: #856404; /* Цвет текста */
-    background-color: #fff3cd; /* Цвет фона */
-    border-color: #ffeeba; /* Цвет рамки */
-}
 
-/* Стиль для информационных сообщений */
-.alert-info {
-    color: #0c5460; /* Цвет текста */
-    background-color: #d1ecf1; /* Цвет фона */
-    border-color: #bee5eb; /* Цвет рамки */
-}

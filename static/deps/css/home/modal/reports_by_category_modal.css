@@ -1,0 +1,149 @@
+/* Стили для модального окна */
+.modal {
+    display: none; /* Скрыть по умолчанию */
+    position: fixed; /* Фиксированное положение */
+    z-index: 1000; /* На переднем плане */
+    left: 0;
+    top: 0;
+    width: 100%; /* Полная ширина */
+    height: 100%; /* Полная высота */
+    overflow: auto; /* Прокрутка, если необходимо */
+    background-color: rgba(0, 0, 0, 0.5); /* Прозрачный черный фон */
+}
+
+.modal-content {
+    background-color: #fefefe; /* Фон модального окна */
+    margin: 5% auto; /* Центрирование окна */
+    padding: 0; /* Убираем внутренние отступы для модульных окон */
+    border: 1px solid #888; /* Рамка модального окна */
+    width: 90%; /* Ширина окна (увеличено на 30%) */
+    max-width: 1040px; /* Максимальная ширина (увеличена на 30%) */
+    height: 600px; /* Высота окна (увеличена) */
+    border-radius: 8px; /* Закругление углов */
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3); /* Тень */
+}
+
+/* Стили для вкладок, которые располагаются вверху */
+.tabs {
+    display: flex; /* Вкладки на одной линии */
+    justify-content: center; /* Центрируем вкладки */
+
+
+    padding: 0; /* Убираем отступы */
+}
+
+.tab-button {
+    padding: 10px 15px; /* Увеличенные отступы для большего размера */
+    cursor: pointer; /* Курсор указателя */
+    border: 2px solid #ccc; /* Тонкая рамка вокруг кнопок */
+    text-align: center; /* Центрируем текст */
+    font-size: 16px; /* Увеличенный размер шрифта для лучшей видимости */
+    border-top-left-radius: 8px; /* Закругление верхних углов */
+    border-top-right-radius: 8px; /* Закругление верхних углов */
+    margin-left: 8px; /* Отступ между вкладками */
+    margin-right: 8px; /* Отступ между вкладками */
+    transition: background-color 0.3s; /* Плавный переход цвета фона */
+    min-width: 350px; /* Минимальная ширина кнопки */
+}
+
+.tab-button:hover {
+    background-color: #d3d3d3; /* Цвет фона при наведении */
+}
+
+.tab-button.active {
+    background-color: #ccc; /* Цвет для активной вкладки */
+    font-weight: bold; /* Жирный шрифт для выделения активной вкладки */
+}
+
+.tab-content {
+    display: none; /* Скрыть контент вкладок по умолчанию */
+    padding: 15px; /* Отступы для контента вкладок */
+}
+
+.tab-content.active {
+    display: block; /* Показывать активный контент */
+}
+
+/* Стили для контейнера графика */
+.chart-container {
+    margin-top: 10px; /* Отступ сверху */
+    height: 300px; /* Высота для графиков */
+    border: 1px solid #ccc; /* Рамка для графиков */
+    border-radius: 5px; /* Закругление углов */
+    background: #f9f9f9; /* Цвет фона */
+    display: flex; /* Flex для выравнивания предметов */
+    justify-content: center; /* Центрирование внутри контейнера */
+    align-items: center; /* Центрирование по вертикали */
+}
+
+/* Стили для списков расходов */
+.daily-expenses-list {
+    list-style-type: none; /* Убрать маркеры списка */
+    padding: 0; /* Убрать внутренние отступы */
+    margin: 15px 0; /* Отступы сверху и снизу */
+}
+
+.daily-expenses-list li {
+    border: 1px solid #ddd; /* Рамка для каждого элемента списка */
+    border-radius: 4px; /* Закругление углов */
+    margin: 5px 0; /* Отступы между элементами списка */
+    padding: 10px; /* Внутренние отступы для элементов списка */
+    background: #f9f9f9; /* Цвет фона для элементов списка */
+    transition: background-color 0.3s; /* Плавный переход фона */
+}
+
+.daily-expenses-list li:hover {
+    background-color: #e0e0e0; /* Цвет фона при наведении на элемент списка */
+}
+
+/* Стили для кнопок фильтрации и сортировки */
+.filter-sort-container {
+    margin-bottom: 15px; /* Отступ снизу для контейнера фильтров и сортировки */
+}
+
+.icon-button {
+    background: none; /* Без фона */
+    border: none; /* Без рамки */
+    cursor: pointer; /* Курсор указателя */
+    margin-right: 10px; /* Отступ справа между кнопками */
+}
+
+.icon-button img {
+    vertical-align: middle; /* Вертикальное выравнивание изображений */
+}
+
+.icon-button:hover {
+    opacity: 0.8; /* Эффект нажатия на кнопку */
+}
+
+/* Стили для кнопки закрытия */
+.close {
+    color: #aaa; /* Цвет (иконки закрытия) */
+    float: right; /* Позиционируем кнопку закрытия */
+    font-size: 28px; /* Размер шрифта */
+    font-weight: bold; /* Жирный шрифт */
+}
+
+.close:hover,
+.close:focus {
+    color: black; /* Цвет при наведении */
+    text-decoration: none; /* Убрать подчеркивание текста */
+    cursor: pointer; /* Курсор указателя */
+}
+
+.chart-title {
+    text-align: center; /* Центрирование текста */
+    text-transform: uppercase; /* Перевод в верхний регистр */
+    font-size: 24px; /* Размер шрифта */
+    margin: 20px 0; /* Отступ сверху и снизу */
+    font-weight: bold; /* Жирный шрифт (по желанию) */
+}
+
+.total-income {
+    margin-top: 10px; /* Отступ сверху */
+    padding: 10px; /* Внутренние отступы */
+    border-top: 1px solid #ddd; /* Горизонтальная линия сверху */
+    font-weight: bold; /* Жирный шрифт */
+    font-size: 16px; /* Размер шрифта */
+    background-color: #f9f9f9; /* Цвет фона */
+}

@@ -1,8 +1,11 @@
 body {
-    font-family: 'Open Sans', sans-serif;
+    font-family: Arial, sans-serif;
+    background-color: #f4f4f9;
+    color: #333;
     margin: 0;
-    display: flex;
+    padding: 0;
 }
+
 
 .container {
     display: flex;
@@ -11,36 +14,32 @@ body {
 
 /* Стили для бокового меню */
 .sidebar {
-    width: 130px;
-    background-color: #f4f4f4;
-    padding: 20px;
+    width: 130px; /* Боковое меню */
+    background-color: #f4f4f4; /* Цвет фона */
+    padding: 20px; /* Внутренние отступы */
     box-shadow: 2px 0 5px rgba(0, 0, 0, 0.1);
 }
 
-/* Стили для списка меню */
 .sidebar ul {
     list-style: none;
     padding: 0;
 }
 
-/* Элементы списка в меню */
 .sidebar ul li {
     margin-bottom: 15px;
 }
 
-/* Ссылки в меню */
 .sidebar ul li a {
     text-decoration: none;
     color: #333;
-    padding: 10px; /* Добавьте отступ для удобства клика */
-    display: block; /* Делаем ссылку блочным элементом */
-    border-radius: 3px; /* Немного закруглённые углы для эстетики */
-    transition: background-color 0.3s; /* Плавный переход для фона */
+    padding: 10px;
+    display: block;
+    border-radius: 3px;
+    transition: background-color 0.3s;
 }
 
-/* Эффект при наведении на ссылки */
 .sidebar ul li a:hover {
-    background-color: #e0e0e0; /* Подсветка серым цветом при наведении */
+    background-color: #e0e0e0;
 }
 
 
@@ -51,24 +50,37 @@ body {
     flex-grow: 1;
 }
 
+.category-toggle {
+    margin-bottom: 20px; /* Отступ снизу для визуального разделения */
+}
+
+.category-toggle button {
+    padding: 10px 15px; /* Внутренние отступы */
+    border: none; /* Убираем рамку */
+    border-radius: 5px; /* Закругленные углы */
+    cursor: pointer; /* Курсор указателя */
+    margin-right: 10px; /* Отступ между кнопками */
+    transition: background-color 0.3s; /* Плавный переход фона */
+}
+
+.category-toggle button.active {
+    background-color: #5cb85c; /* Цвет фона для активной кнопки */
+    color: white; /* Цвет текста в активной кнопке */
+}
+
+.category-toggle button:hover {
+    background-color: #4cae4c; /* Цвет фона при наведении */
+    color: white; /* Цвет текста при наведении */
+}
+
+
+
 /* Стили для списка категорий */
 .categories {
     display: grid; /* Используем CSS Grid для расположения */
     grid-template-columns: repeat(3, 1fr); /* Три колонки равной ширины */
     gap: 20px; /* Расстояние между ячейками */
 }
-
-/* Стили для отдельной категории */
-.category-item {
-    background-color: #ffffff; /* Белый фон */
-    border: 1px solid #ccc; /* Серая рамка */
-    border-radius: 5px; /* Закругленные углы */
-    padding: 15px; /* Отступ внутри блока */
-    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); /* Тень для эффекта подъема */
-    transition: transform 0.2s; /* Анимация при наведении */
-}
-
-/* Увеличим отступ между кнопками с помощью margin */
 
 
 .category-item:hover {
@@ -192,3 +204,235 @@ canvas {
     gap: 50px; /* Отступы между графиками */
 }
 
+/* Стили для модального окна */
+.modal {
+    display: none;
+    position: fixed;
+    z-index: 1;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+    background-color: rgba(0, 0, 0, 0.4);
+}
+
+.modal-content {
+    background-color: #fefefe;
+    margin: 5% auto;
+    padding: 30px;
+    border: 1px solid #888;
+    border-radius: 15px;
+    width: 80%;
+    max-width: 600px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+/* Стили для меток полей ввода */
+.modal-content label {
+    font-weight: bold;  /* Жирный текст */
+    color: #333;        /* Темно-серый цвет для лучшей видимости */
+    margin-bottom: 5px; /* Отступ снизу для разделения метки и поля ввода */
+    display: block;     /* Устанавливаем блочный уровень, чтобы метка занимала всю ширину */
+}
+
+
+/* Стили для заголовка формы в модальном окне */
+.modal-content h2 {
+    margin-bottom: 20px; /* Отступ снизу */
+    font-size: 24px; /* Размер шрифта заголовка */
+    text-align: center; /* Центрируем заголовок */
+}
+
+/* Стили для каждого поля ввода */
+.modal-content input[type="text"],
+.modal-content select {
+    width: 100%; /* Полная ширина */
+    padding: 10px; /* Внутренние отступы */
+    margin-bottom: 15px; /* Отступ снизу для разделения полей */
+    border: 1px solid #ccc; /* Светло-серая рамка */
+    border-radius: 5px; /* Закругленные углы */
+    box-sizing: border-box; /* Включить границы в ширину */
+}
+
+/* Стили для кнопок внутри модального окна */
+.modal-content button {
+    width: 100%; /* Полная ширина */
+    padding: 10px; /* Внутренние отступы для кнопок */
+    background-color: #5cb85c; /* Цвет фона кнопки */
+    color: white; /* Цвет текста кнопки */
+    border: none; /* Убираем рамку */
+    border-radius: 5px; /* Закругленные углы */
+    cursor: pointer; /* Курсор указателя */
+    transition: background-color 0.3s; /* Плавный переход при наведении */
+}
+
+.modal-content button:hover {
+    background-color: #4cae4c; /* Темнее при наведении */
+}
+
+/* Стили для кнопки закрытия */
+.close {
+    color: #aaa;
+    float: right;
+    font-size: 28px;
+    font-weight: bold;
+}
+
+.close:hover,
+.close:focus {
+    color: black;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+/* Стили для кнопок сохранения и отмены */
+.save-btn, .cancel-btn {
+    padding: 10px 15px; /* Внутренние отступы */
+    border: 1px solid #888; /* Более темная рамка */
+    border-radius: 5px; /* Закругленные углы */
+    cursor: pointer; /* Курсор указателя при наведении */
+    margin-left: 10px; /* Отступ между кнопками */
+    background-color: #5cb85c; /* Более насыщенный светло-зеленый фон для Save */
+    color: #ffffff; /*
+    transition: background-color 0.3s, color 0.3s; /* Плавный переход цвета */
+}
+
+/* Эффект при наведении для Save */
+.save-btn:hover {
+    background-color: #5cb85c; /* Более темный зеленый фон при наведении */
+    color: #ffffff; /* Белый текст при наведении */
+}
+
+/* Опционально: изменение цвета для кнопки "Сохранить" */
+.cancel-btn {
+    background-color: #d9534f; /* Более насыщенный светло-красный фон для Cancel */
+    color: #ffffff; /* Темно-красный текст */
+}
+
+/* Эффект при наведении для Cancel */
+.cancel-btn:hover {
+    background-color: #d9534f; /* Более темный красный фон при наведении */
+    color: #ffffff; /* Белый текст при наведении */
+}
+
+/* Стили для полей ввода */
+.category-title-input,
+.category-description-input {
+    width: 100%; /* Полная ширина */
+    padding: 12px; /* Внутренние отступы для более комфортного ввода */
+    margin-bottom: 15px; /* Отступ между полями ввода */
+    border: 1px solid #ccc; /* Светло-серая рамка */
+    border-radius: 5px; /* Закругленные углы */
+    box-sizing: border-box; /* Учитываем границы и отступы в ширину */
+    font-size: 16px; /* Размер шрифта для удобства */
+    transition: border-color 0.3s; /* Плавный переход цветовой рамки */
+}
+
+/* Эффект при получении фокуса на полях ввода */
+.category-title-input:focus,
+.category-description-input:focus {
+    border-color: #5cb85c; /* Цвет рамки при фокусе - аналогичный зеленый */
+    outline: none; /* Убираем стандартный обвод при фокусе */
+}
+
+
+/* Стили для отдельной категории */
+.category-item {
+    background-color: #ffffff; /* Белый фон */
+    border: 1px solid #ccc; /* Серая рамка */
+    border-radius: 5px; /* Закругленные углы */
+    padding: 15px; /* Отступ внутри блока */
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); /* Тень для эффекта подъема */
+    transition: transform 0.2s; /* Анимация при наведении */
+}
+
+/* Дополнительные стили для улучшения визуального восприятия */
+.category-info {
+    flex: 1; /* Занимает всё доступное пространство */
+    margin-bottom: 10px; /* Отступ снизу, чтобы кнопки не прижимались к тексту */
+}
+
+
+.basket-icon-container {
+    display: flex; /* Используем flex для выравнивания значка корзины */
+    align-items: center; /* Центрирование по вертикали */
+    justify-content: flex-end; /* Выровнять по правому краю */
+}
+
+/* Стили для значка корзины */
+.basket-icon {
+    width: 24px; /* Ширина значка корзины */
+    height: 24px; /* Высота значка корзины */
+    cursor: pointer; /* Указатель при наведении */
+    transition: transform 0.2s; /* Плавная анимация для увеличения */
+}
+
+/* Эффект увеличения при наведении */
+.basket-icon:hover {
+    transform: scale(1.2); /* Увеличиваем размер на 20% при наведении */
+}
+
+/* Стили для кнопок */
+.edit-btn, .view-btn, .save-btn, .cancel-btn {
+    margin-top: 5px; /* Отступ между кнопками */
+}
+
+
+
+
+/* Стили для модального окна статистики категории */
+.statistics-modal {
+    display: flex; /* Конфигурация как flex-блока */
+    position: fixed; /* Зафиксирование окна */
+    z-index: 1000; /* На переднем плане после других компонентов */
+    left: 0;
+    top: 0;
+    width: 100%; /* Полная ширина экрана */
+    height: 100%; /* Полная высота экрана */
+    overflow: auto; /* Включить прокрутку */
+    background-color: rgba(0, 0, 0, 0.5); /* Полупрозрачный фон */
+}
+
+.statistics-modal .modal-content {
+    background-color: #ffffff; /* Белый фон для содержимого */
+    margin: auto; /* Центрировать содержимое */
+    padding: 20px; /* Внутренние отступы */
+    border: 1px solid #888; /* Рамка */
+    width: 90%; /* Ширина окна */
+    max-width: 900px; /* Увеличенная максимальная ширина */
+    border-radius: 8px; /* Закругленные углы */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Тень */
+}
+
+/* Стили для кнопки закрытия */
+.close-statistics-modal {
+    color: #aaa; /* Цвет крестика */
+    float: right; /* Правое выравнивание */
+    font-size: 28px; /* Размер шрифта */
+    font-weight: bold; /* Жирный текст */
+}
+
+.close-statistics-modal:hover,
+.close-statistics-modal:focus {
+    color: black; /* Цвет при наведении */
+    text-decoration: none; /* Убираем подчеркивание */
+    cursor: pointer; /* Курсор при наведении */
+}
+
+/* Стили для контейнера графика */
+#chart-container {
+    height: 300px; /* Высота контейнера графика */
+    border: 1px solid #ccc; /* Граница контейнера */
+    border-radius: 5px; /* Закругленные углы */
+    background-color: #f9f9f9; /* Фон контейнера */
+    display: flex; /* Flexbox для центрирования содержимого */
+    align-items: center; /* Вертикальное центрирование */
+    justify-content: center; /* Горизонтальное центрирование */
+}
+
+/* Выделение суммы затрат жирным шрифтом */
+#monthly-expense {
+    font-weight: bold; /* Делает сумму жирной */
+    font-size: 1.5em; /* Увеличиваем размер шрифта для акцента */
+}

@@ -1,8 +1,9 @@
 body {
-    font-family: 'Open Sans', sans-serif;
-    background-color: #f4f4f4;
+    font-family: Arial, sans-serif;
+    background-color: #f4f4f9;
+    color: #333;
     margin: 0;
-    display: flex; /* Используем flexbox для расположения бокового меню и основного контента */
+    padding: 0;
 }
 
 .container {

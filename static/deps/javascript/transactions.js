@@ -36,7 +36,7 @@ function selectTransactionType(type) {
         incomeTab.classList.remove('active');
     } else {
         header.innerText = 'Добавить доход';
-        categorySelect.style.display = 'none'; // Скрываем выбор категории
+        categorySelect.style.display = 'block'; // Показываем выбор категории
         incomeTab.classList.add('active');
         expenseTab.classList.remove('active');
     }
@@ -240,3 +240,5 @@ function closeIncomeReportsModal() {
     const modal = document.getElementById('income-reports-modal');
     modal.style.display = 'none'; // Закрываем модальное окно
 }
+
+

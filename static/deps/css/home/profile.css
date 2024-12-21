@@ -1,38 +1,42 @@
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f4f4f9;
+    color: #333;
+    margin: 0;
+    padding: 0;
+}
+
 .container {
     display: flex;
 }
 
 .sidebar {
-    width: 130px; /* Ширина бокового меню */
+    width: 130px; /* Боковое меню */
     background-color: #f4f4f4; /* Цвет фона */
     padding: 20px; /* Внутренние отступы */
     box-shadow: 2px 0 5px rgba(0, 0, 0, 0.1);
 }
 
-/* Стили для списка меню */
 .sidebar ul {
     list-style: none;
     padding: 0;
 }
 
-/* Элементы списка в меню */
 .sidebar ul li {
     margin-bottom: 15px;
 }
 
-/* Ссылки в меню */
 .sidebar ul li a {
     text-decoration: none;
     color: #333;
-    padding: 10px; /* Добавьте отступ для удобства клика */
-    display: block; /* Делаем ссылку блочным элементом */
-    border-radius: 3px; /* Немного закруглённые углы для эстетики */
-    transition: background-color 0.3s; /* Плавный переход для фона */
+    padding: 10px;
+    display: block;
+    border-radius: 3px;
+    transition: background-color 0.3s;
 }
 
-/* Эффект при наведении на ссылки */
 .sidebar ul li a:hover {
-    background-color: #e0e0e0; /* Подсветка серым цветом при наведении */
+    background-color: #e0e0e0;
 }
 
 .main-content {

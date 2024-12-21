@@ -8,10 +8,6 @@ def facial(request):
     return render(request, 'home/facial.html')
 
 
-def categories(request):
-    return render(request, 'home/categories.html')
-
-
 def transactions(request):
     return render(request, 'home/transactions.html')
 

@@ -9,6 +9,13 @@
     <link rel="stylesheet" href="{% static 'deps/css/home/categories.css' %}"> <!-- Подключение стилевого файла -->
 </head>
 <body>
+{% if messages %}
+    <div id="message-box" class="message-box">
+        {% for message in messages %}
+            <div class="message">{{ message }}</div>
+        {% endfor %}
+    </div>
+{% endif %}
 
 <div class="container">
     <nav class="sidebar">
@@ -17,8 +24,8 @@
                 Профиль</a></li>
             <li><a href="{% url 'home:facial' %}"><img src="{% static '/deps/icons/home_24.png' %}" alt="главная">
                 Главная</a></li>
-            <li><a href="{% url 'home:categories' %}"><img src="{% static '/deps/icons/category_24.png' %}"
-                                                           alt="Категории">
+            <li><a href="{% url 'categories:categories' %}"><img src="{% static '/deps/icons/category_24.png' %}"
+                                                                 alt="Категории">
                 Категории</a></li>
             <li><a href="{% url 'home:transactions' %}"><img src="{% static '/deps/icons/transactions_24.png' %}"
                                                              alt="Транзакции">
@@ -46,17 +53,22 @@
                 <button id="income-btn">Категории доходов</button>
             </div>
 
+
             <div class="category-list">
+
                 <div class="categories expense-categories">
 
+                {% for category in categories_all %}
+                    {% if category.category_type_id == 1 %}
+
                     <div class="category-item">
                         <div class="category-info">
-                            <input type="text" class="category-title-input" value="Категория 1" style="display: none;">
+                            <input type="text" class="category-title-input" value="{{category.name}}" style="display: none;">
                             <span class="category-title"
-                                  style="display: inline; font-weight: 600;">Категория расхода 1</span>
-                            <input type="text" class="category-description-input" value="Краткое описание категории 1"
+                                  style="display: inline; font-weight: 600;">{{category.name}}</span>
+                            <input type="text" class="category-description-input" value="{{category.description}}"
                                    style="display: none;">
-                            <span class="category-description" style="display: block; color: #555;">Краткое описание категории расхода 1</span>
+                            <span class="category-description" style="display: block; color: #555;">{{category.description}}</span>
                         </div>
 
                         <button class="edit-btn" onclick="editCategory(this)">Редактировать</button>
@@ -69,38 +81,24 @@
                                  style="display: none;" onclick="handleBasketClick()">
                         </div>
                     </div>
-
-                    <div class="category-item">
-                        <div class="category-info">
-                            <input type="text" class="category-title-input" value="Категория 1" style="display: none;">
-                            <span class="category-title"
-                                  style="display: inline; font-weight: 600;">Категория расхода 2</span>
-                            <input type="text" class="category-description-input" value="Краткое описание категории 1"
-                                   style="display: none;">
-                            <span class="category-description" style="display: block; color: #555;">Краткое описание категории расхода 2</span>
-                        </div>
-                        <button class="edit-btn" onclick="editCategory(this)">Редактировать</button>
-                        <button class="view-btn" onclick="viewCategory(this)">Статистика категории</button>
-                        <button class="save-btn" onclick="saveCategory(this)" style="display: none;">Сохранить</button>
-                        <button class="cancel-btn" onclick="cancelEdit(this)" style="display: none;">Отмена</button>
-
-                        <div class="basket-icon-container">
-                            <img src="{% static 'deps/icons/basket_24.png' %}" alt="Корзина" class="basket-icon"
-                                 style="display: none;" onclick="handleBasketClick()">
-                        </div>
-                    </div>
+                    {% endif %}
+                {% endfor %}
                 </div>
+
+
+
 
                 <div class="categories income-categories" style="display: none;">
-
+                {% for category in categories_all %}
+                    {% if category.category_type_id == 2 %}
                     <div class="category-item">
                         <div class="category-info">
-                            <input type="text" class="category-title-input" value="Категория 1" style="display: none;">
+                            <input type="text" class="category-title-input" value="{{category.name}}" style="display: none;">
                             <span class="category-title"
-                                  style="display: inline; font-weight: 600;">Категория дохода 1</span>
+                                  style="display: inline; font-weight: 600;">{{category.name}}</span>
                             <input type="text" class="category-description-input" value="Краткое описание категории 1"
                                    style="display: none;">
-                            <span class="category-description" style="display: block; color: #555;">Краткое описание категории дохода 1</span>
+                            <span class="category-description" style="display: block; color: #555;">{{category.description}}</span>
                         </div>
                         <button class="edit-btn" onclick="editCategory(this)">Редактировать</button>
                         <button class="view-btn" onclick="viewCategory(this)">Статистика категории</button>
@@ -112,28 +110,12 @@
                                  style="display: none;" onclick="handleBasketClick()">
                         </div>
                     </div>
-
-                    <div class="category-item">
-                        <div class="category-info">
-                            <input type="text" class="category-title-input" value="Категория 1" style="display: none;">
-                            <span class="category-title"
-                                  style="display: inline; font-weight: 600;">Категория дохода 2</span>
-                            <input type="text" class="category-description-input" value="Краткое описание категории 1"
-                                   style="display: none;">
-                            <span class="category-description" style="display: block; color: #555;">Краткое описание категории дохода 2</span>
-                        </div>
-                        <button class="edit-btn" onclick="editCategory(this)">Редактировать</button>
-                        <button class="view-btn" onclick="viewCategory(this)">Статистика категории</button>
-                        <button class="save-btn" onclick="saveCategory(this)" style="display: none;">Сохранить</button>
-                        <button class="cancel-btn" onclick="cancelEdit(this)" style="display: none;">Отмена</button>
-
-                        <div class="basket-icon-container">
-                            <img src="{% static 'deps/icons/basket_24.png' %}" alt="Корзина" class="basket-icon"
-                                 style="display: none;" onclick="handleBasketClick()">
-                        </div>
-                    </div>
+                    {% endif %}
+                {% endfor %}
                 </div>
             </div>
+
+
 
             <!-- Модальное окно для статистики категории -->
             <div id="statisticsModal" class="modal statistics-modal" style="display: none;">
@@ -157,17 +139,18 @@
                 <div class="modal-content">
                     <span class="close">&times;</span>
                     <h2>Добавить новую категорию</h2>
-                    <form id="addCategoryForm">
+                    <form id="addCategoryForm" action="{% url 'categories:add_category' %}" method="post">
+                        {% csrf_token %}
                         <label for="categoryType">Тип категории:</label>
-                        <select id="categoryType" required>
+                        <select name="categoryType" id="categoryType" required>
                             <option value="">Выберите тип</option>
                             <option value="income">Доход</option>
                             <option value="expense">Расход</option>
                         </select>
                         <label for="new-category-name">Название категории:</label>
-                        <input type="text" id="new-category-name" placeholder="Название категории" required>
+                        <input type="text" name="name" id="new-category-name" placeholder="Название категории" required>
                         <label for="new-description-name">Описание категории:</label>
-                        <input type="text" id="new-description-name" placeholder="Описание категории" required>
+                        <input type="text" name="description" id="new-description-name" placeholder="Описание категории" required>
                         <button type="submit">Сохранить</button>
                         <button type="button" class="close-modal">Отмена</button>
                     </form>

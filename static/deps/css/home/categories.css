@@ -436,3 +436,35 @@ canvas {
     font-weight: bold; /* Делает сумму жирной */
     font-size: 1.5em; /* Увеличиваем размер шрифта для акцента */
 }
+
+
+
+.message-box {
+    position: fixed; /* Фиксированное положение */
+    top: 20px; /* Отступ сверху */
+    left: 50%; /* Центрирование по горизонтали */
+    transform: translateX(-50%); /* Центрирование */
+    z-index: 1000; /* На переднем плане */
+    width: 90%; /* Ширина сообщения */
+    max-width: 500px; /* Максимальная ширина */
+    margin: 0 auto; /* Автоматический отступ */
+}
+
+.message {
+    background-color: #4CAF50; /* Зеленый фон */
+    color: white; /* Белый текст */
+    padding: 15px; /* Внутренние отступы */
+    border-radius: 5px; /* Закругленные углы */
+    margin-bottom: 10px; /* Отступ между сообщениями */
+    animation: fadeIn 0.5s, fadeOut 0.5s 9.5s; /* Анимация появления и исчезновения */
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
+
+@keyframes fadeOut {
+    from { opacity: 1; }
+    to { opacity: 0; }
+}

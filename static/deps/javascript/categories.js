@@ -6,31 +6,31 @@ var openModalBtn = document.getElementById("openModalBtn");
 var closeBtns = document.querySelectorAll(".close, .close-modal");
 
 // Открываем модальное окно при нажатии кнопки
-openModalBtn.onclick = function() {
+openModalBtn.onclick = function () {
     modal.style.display = "block";
 }
 
 // Закрываем модальное окно при нажатии кнопок закрытия
-closeBtns.forEach(function(btn) {
-    btn.onclick = function() {
+closeBtns.forEach(function (btn) {
+    btn.onclick = function () {
         modal.style.display = "none";
     }
 });
 
 // Закрываем модальное окно при нажатии вне его границ
-window.onclick = function(event) {
+window.onclick = function (event) {
     if (event.target === modal) {
         modal.style.display = "none";
     }
 }
 
-// Пример отправки формы (вы можете настроить по своим нуждам)
-document.getElementById("addCategoryForm").onsubmit = function(event) {
-    event.preventDefault(); // Останавливаем отправку формы по умолчанию
-    // Здесь добавить логику для сохранения категории
-    alert("Категория добавлена!"); // Временное сообщение
-    modal.style.display = "none"; // Закрываем модальное окно
-};
+// Этот код можно добавить, если хотите управлять классом скрытия
+setTimeout(function() {
+    var messageBox = document.getElementById("message-box");
+    if (messageBox) {
+        messageBox.style.display = 'none';
+    }
+}, 10000); // Скрыть через 10 секунд
 
 
 // ФУНКЦИИ ДЛЯ ПЕРЕКЛЮЧЕНИЯ МЕЖДУ КАТЕГОРИЯМИ ДОХОДОВ И РАСХОДОВ В КАТЕГОРИЯХ

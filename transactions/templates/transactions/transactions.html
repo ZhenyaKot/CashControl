@@ -16,11 +16,9 @@
             <li><a href="{% url 'home:facial' %}"><img src="{% static '/deps/icons/home_24.png' %}" alt="главная">
                 Главная</a></li>
             <li><a href="{% url 'categories:categories' %}"><img src="{% static '/deps/icons/category_24.png' %}"
-                                                           alt="Категории">
-                Категории</a></li>
-            <li><a href="{% url 'home:transactions' %}"><img src="{% static '/deps/icons/transactions_24.png' %}"
-                                                             alt="Транзакции">
-                Транзакции</a></li>
+                                                                 alt="Категории"> Категории</a></li>
+            <li><a href="{% url 'transactions:transactions' %}"><img
+                    src="{% static '/deps/icons/transactions_24.png' %}" alt="Транзакции"> Транзакции</a></li>
             <li><a href="{% url 'home:reports' %}"><img src="{% static '/deps/icons/reports_24.png' %}" alt="Отчеты">
                 Отчеты</a></li>
             <li><a href="#analytics"><img src="{% static '/deps/icons/analysts_24.png' %}" alt="Аналитика">
@@ -31,9 +29,8 @@
     </nav>
 
     <div class="main-content">
-        <h1 class="header">
-            CashControl <img src="{% static '/deps/icons/logo_32.png' %}" class="logo">
-        </h1>
+        <h1 class="header">CashControl <img src="{% static '/deps/icons/logo_32.png' %}" class="logo"></h1>
+
         <h2>Управление транзакциями</h2>
 
         <div id="today-summary">
@@ -43,49 +40,42 @@
         </div>
 
         <div class="button-container">
-            <button class="big-button" onclick="showAddTransactionForm()">Добавить транзакцию</button>
+            <button class="big-button" onclick="document.getElementById('modal').style.display='block'">Добавить
+                транзакцию
+            </button>
             <button class="secondary-button" onclick="importTransactions()">Импортировать транзакции</button>
             <button class="secondary-button" onclick="exportTransactions()">Экспортировать транзакции</button>
         </div>
 
         <div id="modal" class="modal">
             <div class="modal-content">
-                <span class="close" onclick="hideAddTransactionForm()">&times;</span>
+                <span class="close" onclick="document.getElementById('modal').style.display='none'">&times;</span>
                 <h2 id="transaction-type-header">Добавить транзакцию</h2>
-                <div class="tabs">
-                    <button id="expense-tab" class="tab" onclick="selectTransactionType('expense')">Расход</button>
-                    <button id="income-tab" class="tab" onclick="selectTransactionType('income')">Доход</button>
-                </div>
-                <form onsubmit="addTransaction(event)">
-                    <input type="date" id="transaction-date" required>
-                    <input type="number" id="transaction-amount" placeholder="Сумма" required>
-                    <select id="transaction-category" style="display: none;">
-                        <option value="food">Еда</option>
-                        <option value="transport">Транспорт</option>
-                        <option value="entertainment">Развлечения</option>
-                        <option value="other">Прочее</option>
-                    </select>
-                    <input type="text" id="transaction-description" placeholder="Описание" required>
 
-                    <!-- Поле выбора метода оплаты -->
-                    <select id="payment-method" required>
+                <form method="POST" action="#transactions" enctype="multipart/form-data">
+                    {% csrf_token %}
+                    <input type="date" name="transaction_date" required>
+                    <input type="number" name="transaction_amount" placeholder="Сумма" required>
+                    <input type="text" name="transaction_category" placeholder="Категория (новая или существующая)"
+                           required>
+                    <input type="text" name="transaction_description" placeholder="Описание" required>
+
+                    <select name="payment_method" required>
                         <option value="" disabled selected>Выберите метод оплаты</option>
-                        <option value="cash">наличные</option>
+                        <option value="cash">Наличные</option>
                         <option value="credit_card">Кредитная карта</option>
                         <option value="debit_card">Дебетовая карта</option>
                         <option value="transfer">Банковский перевод</option>
                     </select>
 
-                    <!-- Поле загрузки квитанции -->
                     <label for="receipt-upload">Загрузить квитанцию (по желанию):</label>
-                    <input type="file" id="receipt-upload" accept="image/*">
+                    <input type="file" id="receipt-upload" name="receipt_upload" accept="image/*">
 
                     <button type="submit">Сохранить</button>
                 </form>
             </div>
         </div>
 
-        <!-- Секция для последних транзакций -->
         <div class="transactions-section">
             <h2>Последние транзакции</h2>
             <div class="filter-sort-container">
@@ -104,6 +94,6 @@
     </div>
 </div>
 
-<script src="{% static 'deps/javascript/transactions.js' %}"></script>
+<script src="{% static 'deps/javascript/transactions_form.js' %}"></script>
 </body>
 </html>

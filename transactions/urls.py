@@ -6,4 +6,5 @@ app_name = 'transactions'
 
 urlpatterns = [
     path('', views.transactions, name='transactions'),
+    path('add/', views.add_transactions, name='add_transactions'),
 ]

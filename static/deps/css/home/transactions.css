@@ -155,8 +155,6 @@ h1, h2 {
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
 }
 
-
-
 .close {
     color: #aaa;
     float: right;
@@ -179,19 +177,25 @@ h1, h2 {
     padding: 12px 20px;
     margin-right: 5px;
     cursor: pointer;
-    border: 1px solid #ddd;
+    border: 1px solid #ddd; /* Цвет границы */
     border-radius: 20px;
-    background-color: #f4f4f4;
-    transition: background-color 0.3s;
+    background-color: #f4f4f4; /* Цвет фона по умолчанию */
+    transition: background-color 0.3s, color 0.3s; /* Плавный переход цвета */
+    display: inline-block; /* Размещение вкладок в одной строке */
 }
 
 .tab:hover {
-    background-color: #e0e0e0;
+    background-color: #e0e0e0; /* Цвет фона при наведении */
 }
 
 .tab.active {
-    background-color: #ddd;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+    background-color: #28a745; /* Цвет фона для активной вкладки (ярко-зеленый) */
+    color: white; /* Цвет текста для активной вкладки */
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2); /* Тень для активной вкладки */
+}
+
+.tabcontent {
+    display: none;
 }
 
 input[type="date"],
@@ -208,7 +212,7 @@ select {
 
 button[type="submit"] {
     padding: 12px 20px;
-    background-color: #28a745;
+    background-color: #28a745; /* Зелёный цвет кнопки */
     color: white;
     border: none;
     border-radius: 5px;
@@ -217,8 +221,9 @@ button[type="submit"] {
 }
 
 button[type="submit"]:hover {
-    background-color: #218838;
+    background-color: #218838; /* Темно-зеленый цвет кнопки при наведении */
 }
+
 
 /* Стили для кнопок редактирования и удаления */
 .edit-button, .delete-button {
@@ -299,3 +304,32 @@ label {
     font-weight: bold; /* Жирный шрифт */
 }
 
+.message-box {
+    position: fixed; /* Фиксированное положение */
+    top: 20px; /* Отступ сверху */
+    left: 50%; /* Центрирование по горизонтали */
+    transform: translateX(-50%); /* Центрирование */
+    z-index: 1000; /* На переднем плане */
+    width: 90%; /* Ширина сообщения */
+    max-width: 500px; /* Максимальная ширина */
+    margin: 0 auto; /* Автоматический отступ */
+}
+
+.message {
+    background-color: #4CAF50; /* Зеленый фон */
+    color: white; /* Белый текст */
+    padding: 15px; /* Внутренние отступы */
+    border-radius: 5px; /* Закругленные углы */
+    margin-bottom: 10px; /* Отступ между сообщениями */
+    animation: fadeIn 0.5s, fadeOut 0.5s 9.5s; /* Анимация появления и исчезновения */
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
+
+@keyframes fadeOut {
+    from { opacity: 1; }
+    to { opacity: 0; }
+}

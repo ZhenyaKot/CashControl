@@ -8,6 +8,15 @@
     <link rel="stylesheet" href="{% static 'deps/css/home/transactions.css' %}"> <!-- Подключение стилевого файла -->
 </head>
 <body>
+
+{% if messages %}
+<div id="message-box" class="message-box">
+    {% for message in messages %}
+    <div class="message">{{ message }}</div>
+    {% endfor %}
+</div>
+{% endif %}
+
 <div class="container">
     <nav class="sidebar">
         <ul>
@@ -35,8 +44,10 @@
 
         <div id="today-summary">
             <h3>Сегодняшний баланс</h3>
-            <p>Доходы: <span id="today-income" class="income-value">0.00</span> ₽</p>
-            <p>Расходы: <span id="today-expense" class="expense-value">0.00</span> ₽</p>
+            <p>Доходы: <span id="today-income" class="income-value">{% if today_income_transactions is None %}0.00
+                {% else %}{{today_income_transactions}}{% endif %}</span> ₽</p>
+            <p>Расходы: <span id="today-expense" class="expense-value">{% if today_expense_transactions is None %}0.00
+                {% else %}{{today_expense_transactions}}{% endif %}</span> ₽</p>
         </div>
 
         <div class="button-container">
@@ -49,32 +60,77 @@
 
         <div id="modal" class="modal">
             <div class="modal-content">
-                <span class="close" onclick="document.getElementById('modal').style.display='none'">&times;</span>
+                <span class="close" onclick="hideAddTransactionForm()">&times;</span>
                 <h2 id="transaction-type-header">Добавить транзакцию</h2>
 
-                <form method="POST" action="#transactions" enctype="multipart/form-data">
-                    {% csrf_token %}
-                    <input type="date" name="transaction_date" required>
-                    <input type="number" name="transaction_amount" placeholder="Сумма" required>
-                    <input type="text" name="transaction_category" placeholder="Категория (новая или существующая)"
-                           required>
-                    <input type="text" name="transaction_description" placeholder="Описание" required>
+                <!-- Вкладки -->
+                <div class="tabs">
+                    <div id="expense-tab" class="tab active" onclick="selectTransactionType('expense')">Расход</div>
+                    <div id="income-tab" class="tab" onclick="selectTransactionType('income')">Доход</div>
+                </div>
 
-                    <select name="payment_method" required>
-                        <option value="" disabled selected>Выберите метод оплаты</option>
-                        <option value="cash">Наличные</option>
-                        <option value="credit_card">Кредитная карта</option>
-                        <option value="debit_card">Дебетовая карта</option>
-                        <option value="transfer">Банковский перевод</option>
-                    </select>
+                <!-- Содержимое для вкладки "Расход" -->
+                <div id="expense" class="tabcontent" style="display: block;">
+                    <form method="POST" action="{% url 'transactions:add_transactions' %}"
+                          enctype="multipart/form-data">
+                        {% csrf_token %}
+                        <input type="date" name="transaction_date" id="transaction_date" required>
+                        <input type="number" name="transaction_amount" placeholder="Сумма" required>
 
-                    <label for="receipt-upload">Загрузить квитанцию (по желанию):</label>
-                    <input type="file" id="receipt-upload" name="receipt_upload" accept="image/*">
 
-                    <button type="submit">Сохранить</button>
-                </form>
+                        <select name="transaction_category" id="expense-category" required>
+                            <option value="" disabled selected>Выберите категорию</option>
+                            {% for categories in expense_categories %}
+                            <option value="{{ categories.id }}">{{ categories.name }}</option>
+                            {% endfor %}
+
+                        </select>
+
+                        <input type="text" name="transaction_description" placeholder="Описание" required>
+
+                        <select name="payment_method" required>
+                            <option value="" disabled selected>Выберите метод оплаты</option>
+                            {% for payment in payment_all %}
+                            <option value="{{ payment.id }}">{{ payment.type }}</option>
+                            {% endfor %}
+                        </select>
+
+                        <label for="receipt-upload_id">Загрузить квитанцию (по желанию):</label>
+                        <input type="file" id="receipt-upload_id" name="receipt_upload" accept="image/*">
+
+                        <button type="submit">Сохранить</button>
+                    </form>
+                </div>
+
+                <!-- Содержимое для вкладки "Доход" -->
+                <div id="income" class="tabcontent" style="display: none;">
+                    <form method="POST" action="{% url 'transactions:add_transactions' %}"
+                          enctype="multipart/form-data">
+                        {% csrf_token %}
+
+                        <input type="date" name="transaction_date" id="income_transaction_date" required>
+                        <input type="number" name="transaction_amount" placeholder="Сумма" required>
+
+
+                        <select name="transaction_category" id="income-category" required>
+                            <option value="" disabled selected>Выберите категорию</option>
+                            {% for categories in income_categories %}
+                            <option value="{{ categories.id }}">{{ categories.name }}</option>
+                            {% endfor %}
+
+                        </select>
+
+                        <input type="text" name="transaction_description" placeholder="Описание" required>
+
+                        <label for="receipt-upload">Загрузить квитанцию (по желанию):</label>
+                        <input type="file" id="receipt-upload" name="receipt_upload" accept="image/*">
+
+                        <button type="submit">Сохранить</button>
+                    </form>
+                </div>
             </div>
         </div>
+
 
         <div class="transactions-section">
             <h2>Последние транзакции</h2>

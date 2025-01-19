@@ -43,11 +43,11 @@
         <h2>Управление транзакциями</h2>
 
         <div id="today-summary">
-            <h3>Сегодняшний баланс</h3>
-            <p>Доходы: <span id="today-income" class="income-value">{% if today_income_transactions is None %}0.00
-                {% else %}{{today_income_transactions}}{% endif %}</span> ₽</p>
-            <p>Расходы: <span id="today-expense" class="expense-value">{% if today_expense_transactions is None %}0.00
-                {% else %}{{today_expense_transactions}}{% endif %}</span> ₽</p>
+            <h3>Транзакции за месяц</h3>
+            <p>Доходы: <span id="today-income" class="income-value">{% if month_income_transactions is None %}0.00
+                {% else %}{{month_income_transactions}}{% endif %}</span> ₽</p>
+            <p>Расходы: <span id="today-expense" class="expense-value">{% if month_expense_transactions is None %}0.00
+                {% else %}{{month_expense_transactions}}{% endif %}</span> ₽</p>
         </div>
 
         <div class="button-container">
@@ -134,19 +134,30 @@
 
         <div class="transactions-section">
             <h2>Последние транзакции</h2>
+
             <div class="filter-sort-container">
                 <button class="icon-button" onclick="filterTransactions()" title="Фильтровать">
                     <img src="{% static '/deps/icons/filter_24.png' %}" alt="Фильтровать" width="20"> Фильтр
                 </button>
 
-                <button class="icon-button" onclick="sortTransactions()" title="Сортировать">
-                    <img src="{% static '/deps/icons/sorting_24.png' %}" alt="Сортировать" width="20"> Сортировка
-                </button>
+                <div class="sort-dropdown">
+                    <button class="icon-button" onclick="toggleSortOptions()" title="Сортировать">
+                        <img src="{% static '/deps/icons/sorting_24.png' %}" alt="Сортировать" width="20"> Сортировка
+                    </button>
+                    <div class="sort-options" id="sort-options" style="display: none;">
+                        <button onclick="sortTransactions('asc')">От ранней к поздней</button>
+                        <button onclick="sortTransactions('desc')">От поздней к ранней</button>
+                    </div>
+                </div>
+
             </div>
+
             <div class="transactions-list" id="transactions-list">
-                <!-- Список транзакций будет динамически заполнен здесь -->
+                {% include 'transactions/transactions_partial.html' with latest_month_transactions=latest_transactions
+                %}
             </div>
         </div>
+
     </div>
 </div>
 

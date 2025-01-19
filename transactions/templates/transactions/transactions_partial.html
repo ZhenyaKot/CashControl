@@ -1,0 +1,13 @@
+{% for transactions in latest_month_transactions %}
+<div class="transaction-item">
+    <div class="transaction-details">
+        <span class="transaction-date">{{ transactions.date }}</span>
+        <span class="transaction-description">{{ transactions.description }}</span>
+    </div>
+    {% if transactions.type_transactions_id == 1 %}
+        <div class="transaction-amount negative-amount">-{{ transactions.sum }} ₽</div>
+    {% else %}
+        <div class="transaction-amount positive-amount">+{{ transactions.sum }} ₽</div>
+    {% endif %}
+</div>
+{% endfor %}

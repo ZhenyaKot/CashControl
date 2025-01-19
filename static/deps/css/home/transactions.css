@@ -109,29 +109,6 @@ h1, h2 {
     background-color: #0056b3; /* Темнее при наведении */
 }
 
-.transactions-section {
-    margin-top: 20px;
-    border: 1px solid #ddd;
-    border-radius: 5px;
-    padding: 10px;
-}
-
-.transactions-list {
-    list-style-type: none;
-    padding: 0;
-    text-align: left; /* Выровнять текст влево */
-}
-
-.transactions-list div {
-    margin: 5px 0;
-    padding: 10px;
-    border: 1px solid #ddd;
-    border-radius: 4px;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-}
-
 .modal {
     display: none;
     position: fixed;
@@ -332,4 +309,107 @@ label {
 @keyframes fadeOut {
     from { opacity: 1; }
     to { opacity: 0; }
+}
+
+.transactions-section {
+    margin: 20px;
+    padding: 15px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+
+.filter-sort-container {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 10px;
+}
+
+.icon-button {
+    background: none;
+    border: none;
+    cursor: pointer;
+}
+
+.transactions-list {
+    margin-top: 10px;
+}
+
+.transactions-list div {
+    margin: 5px 0;
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.transaction-item {
+    display: flex;
+    justify-content: space-between;
+    padding: 10px;
+    border-bottom: 1px solid #eee;
+}
+
+.transaction-details {
+    flex-grow: 1;
+}
+
+.transaction-date {
+    display: block;
+    font-weight: bold;
+}
+
+.transaction-description {
+    color: #555;
+}
+
+.transaction-amount {
+    font-weight: bold;
+    font-size: 1.2em;
+}
+
+.negative-amount {
+    color: red; /* Цвет для расходов */
+}
+
+.positive-amount {
+    color: green; /* Цвет для доходов */
+}
+
+
+.sort-dropdown {
+    position: relative; /* Позиционирование для выпадающего меню */
+}
+
+.sort-options {
+    display: none; /* Скрыто по умолчанию */
+    position: absolute; /* Позиционирование под кнопкой */
+    z-index: 1000; /* Выше других элементов */
+    background-color: white; /* Цвет фона для выпадающего меню */
+    border: 1px solid #ccc; /* Цвет границы меню */
+    border-radius: 5px; /* Закругленные углы */
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2); /* Тень для эффекта поднятия */
+    margin-top: 5px; /* Отступ от кнопки */
+    width: 200px; /* Ширина выпадающего меню */
+}
+
+.sort-options button {
+    display: block; /* Строка блока для каждой кнопки */
+    padding: 10px; /* Внутренний отступ для кнопок в меню */
+    text-align: left; /* Выравнивание текста по левому краю */
+    border: none; /* Без границы */
+    background-color: transparent; /* Прозрачный цвет фона */
+    width: 100%; /* Ширина блока */
+    cursor: pointer; /* Курсор указатель */
+    transition: background-color 0.3s; /* Плавный переход фона */
+}
+
+.sort-options button:hover {
+    background-color: #f0f0f0; /* Цвет фона при наведении на кнопки в меню */
+}
+
+.sort-options button.active {
+    background-color: #007bff; /* Цвет фона для активной кнопки */
+    color: white; /* Цвет текста для активной кнопки */
 }

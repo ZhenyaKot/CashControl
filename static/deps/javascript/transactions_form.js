@@ -54,3 +54,68 @@ setTimeout(function() {
         messageBox.style.display = 'none';
     }
 }, 10000); // Скрыть через 10 секунд
+
+
+// ОКНО ОТКРЫТИЯ ВЫБОРА ВАРИАНТОВ СОРТИРОВКИ
+function toggleSortOptions() {
+    const sortOptions = document.getElementById('sort-options');
+    if (sortOptions.style.display === 'none') {
+        sortOptions.style.display = 'block'; // Показываем меню
+    } else {
+        sortOptions.style.display = 'none'; // Скрываем меню
+    }
+}
+
+// КОД ДЛЯ СОРТИРОВКИ ТРАНЗАКЦИЯ С ПОМОЩЬЮ AJAX
+function sortTransactions(order) {
+    console.log(`Сортировка по: ${order}`);
+    const url = `${window.location.origin}/transactions/sort-transactions/?order=${order}`;
+    console.log(`URL запроса: ${url}`);
+
+    fetch(url, {
+        method: 'GET',
+        headers: {
+            'X-Requested-With': 'XMLHttpRequest'
+        }
+    })
+    .then(response => {
+        console.log(response); // Логируем ответ
+        return response.json();
+    })
+    .then(data => {
+        if (data.html) {
+            document.getElementById('transactions-list').innerHTML = data.html;
+
+            // Удаляем класс active у всех кнопок сортировки
+            const sortButtons = document.querySelectorAll('.sort-options button');
+            sortButtons.forEach(button => {
+                button.classList.remove('active');
+            });
+
+            // Добавляем класс active выбранной кнопке
+            if (order === 'asc') {
+                const activeButton = Array.from(sortButtons).find(button => {
+                    return button.textContent.trim() === "От ранней к поздней";
+                });
+                if (activeButton) {
+                    activeButton.classList.add('active');
+                }
+            } else {
+                const activeButton = Array.from(sortButtons).find(button => {
+                    return button.textContent.trim() === "От поздней к ранней";
+                });
+                if (activeButton) {
+                    activeButton.classList.add('active');
+                }
+            }
+
+            // Скрываем меню сортировки после выбора метода
+            document.getElementById('sort-options').style.display = 'none';
+        } else {
+            console.error('Ошибка получения данных:', data.error);
+        }
+    })
+    .catch(error => console.error('Ошибка:', error));
+}
+
+

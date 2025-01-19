@@ -1,23 +1,28 @@
-from datetime import date
+from datetime import date, timedelta
 
 from categories.models import Category
 from django.contrib import messages
 from django.db.models import Sum
-from django.http import HttpResponseRedirect, HttpResponse
+from django.http import HttpResponseRedirect, HttpResponse, JsonResponse
 from django.shortcuts import render
 from django.urls import reverse
 from transactions.models import Payment
 from transactions.models import TypeTransactions, Transactions
 
-
 # Create your views here.
 
+TODAY = date.today()
+FIRST_DAY_OF_MONTH = TODAY.replace(day=1)
+
+
 def calculating_transactions_day(id_type_transactions):
-    today_transactions = Transactions.objects.filter(type_transactions_id=id_type_transactions, date=date.today())
+    month_transactions = Transactions.objects.filter(
+        type_transactions_id=id_type_transactions, date__gte=FIRST_DAY_OF_MONTH,
+        date__lt=TODAY.replace(day=1) + timedelta(days=31))
 
-    total_today_transactions = today_transactions.aggregate(total=Sum('sum'))
+    total_month_transactions = month_transactions.aggregate(total=Sum('sum'))
 
-    return total_today_transactions['total']
+    return total_month_transactions['total']
 
 
 def transactions(request):
@@ -25,15 +30,19 @@ def transactions(request):
     income_categories = Category.objects.filter(category_type_id=2)
     payment_all = Payment.objects.all()
 
-    today_expense_transactions = calculating_transactions_day(id_type_transactions=1)
-    today_income_transactions = calculating_transactions_day(id_type_transactions=2)
+    month_expense_transactions = calculating_transactions_day(id_type_transactions=1)
+    month_income_transactions = calculating_transactions_day(id_type_transactions=2)
+
+    latest_transactions = Transactions.objects.filter(date__gte=FIRST_DAY_OF_MONTH,
+                                                      date__lt=TODAY.replace(day=1) + timedelta(days=31))[::-1]
 
     context = {
         'expense_categories': expense_categories,
         'income_categories': income_categories,
         'payment_all': payment_all,
-        'today_expense_transactions': today_expense_transactions,
-        'today_income_transactions': today_income_transactions,
+        'month_expense_transactions': month_expense_transactions,
+        'month_income_transactions': month_income_transactions,
+        'latest_transactions': latest_transactions
     }
 
     return render(request, 'transactions/transactions.html', context)
@@ -78,3 +87,23 @@ def add_transactions(request):
         return HttpResponseRedirect(reverse('transactions:transactions'))
 
     return HttpResponse(status=400)
+
+
+def sort_transactions(request):
+    if request.headers.get('x-requested-with') == 'XMLHttpRequest':
+        order = request.GET.get('order', 'asc')
+        latest_transactions = Transactions.objects.filter(date__gte=FIRST_DAY_OF_MONTH,
+                                                          date__lt=TODAY.replace(day=1) + timedelta(days=31))
+
+        if order == 'asc':
+            latest_transactions = latest_transactions.order_by('date')
+        else:
+            latest_transactions = latest_transactions.order_by('-date')
+
+        html = render(request, 'transactions/transactions_partial.html', {
+            'latest_month_transactions': latest_transactions,
+        }).content.decode('utf-8')
+
+        return JsonResponse({'html': html})
+
+    return JsonResponse({'error': 'Invalid request'}, status=400)

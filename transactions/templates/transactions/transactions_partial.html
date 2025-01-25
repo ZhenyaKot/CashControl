@@ -1,13 +1,47 @@
-{% for transactions in latest_month_transactions %}
+{% load static %}
+
+{% if all_transactions %}
+{% for transactions in all_transactions %}
 <div class="transaction-item">
     <div class="transaction-details">
         <span class="transaction-date">{{ transactions.date }}</span>
         <span class="transaction-description">{{ transactions.description }}</span>
     </div>
     {% if transactions.type_transactions_id == 1 %}
-        <div class="transaction-amount negative-amount">-{{ transactions.sum }} ₽</div>
+    <div class="transaction-amount negative-amount">-{{ transactions.sum }} ₽</div>
     {% else %}
-        <div class="transaction-amount positive-amount">+{{ transactions.sum }} ₽</div>
+    <div class="transaction-amount positive-amount">+{{ transactions.sum }} ₽</div>
     {% endif %}
+
+    <button class="edit-transaction-button" onclick="editTransaction({{ transactions.id }})" title="Редактировать">
+        <img src="{% static 'deps/icons/edit_24.png' %}" alt="Редактировать">
+    </button>
+
+    <button class="delete-transaction-button"
+            data-id="{{ transactions.id }}"
+            title="Удалить">
+        <img src="{% static 'deps/icons/basket_24.png' %}" alt="Удалить">
+    </button>
+
 </div>
 {% endfor %}
+{% else %}
+<div class="no-transactions-message">Нет транзакций с такими параметрами. Попробуйте изменить фильтры</div>
+{% endif %}
+
+<div id="message-container"></div>
+
+<!-- Модальное окно подтверждения удаления -->
+<div id="confirmDeleteModal" class="unique-confirm-delete-modal" style="display: none;">
+    <div class="unique-confirm-modal-content">
+        <span class="unique-close confirm-close" onclick="closeModal()">×</span>
+        <p>Вы действительно хотите удалить эту транзакцию?</p>
+        <button class="unique-btn-ok" id="confirmDeleteBtn">Ок</button>
+        <button class="unique-btn-cancel" onclick="closeModal()">Отмена</button>
+    </div>
+</div>
+
+
+
+
+<script src="{% static 'deps/javascript/transactions_form.js' %}"></script>

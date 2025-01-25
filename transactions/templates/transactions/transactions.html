@@ -136,9 +136,18 @@
             <h2>Последние транзакции</h2>
 
             <div class="filter-sort-container">
-                <button class="icon-button" onclick="filterTransactions()" title="Фильтровать">
+                <!-- Кнопка для открытия модального окна фильтрации -->
+                <button class="icon-button" onclick="toggleFilterModal()" title="Фильтровать">
                     <img src="{% static '/deps/icons/filter_24.png' %}" alt="Фильтровать" width="20"> Фильтр
                 </button>
+
+                <!-- Новый выпадающий список для выбора периода -->
+                <select id="filter-time-period" onchange="setDatesFromPeriodAndToggle()">
+                    <option value="all_time">За все время</option>
+                    <option value="1">За день</option>
+                    <option value="7">За неделю</option>
+                    <option value="30">За месяц</option>
+                </select>
 
                 <div class="sort-dropdown">
                     <button class="icon-button" onclick="toggleSortOptions()" title="Сортировать">
@@ -149,14 +158,62 @@
                         <button onclick="sortTransactions('desc')">От поздней к ранней</button>
                     </div>
                 </div>
-
             </div>
 
             <div class="transactions-list" id="transactions-list">
-                {% include 'transactions/transactions_partial.html' with latest_month_transactions=latest_transactions
-                %}
+                {% include 'transactions/transactions_partial.html' %}
+            </div>
+
+        </div>
+
+        <!-- Модальное окно для фильтров -->
+        <div id="filterModal" class="modal" style="display: none;">
+            <div class="modal-content">
+                <span class="close" onclick="toggleFilterModal()">&times;</span>
+                <h3>Фильтрация</h3>
+
+                <label for="filter-transaction-type">Тип транзакции:</label>
+                <select id="filter-transaction-type">
+                    <option value="all_type">Все</option>
+                    <option value="income">Доход</option>
+                    <option value="expense">Расход</option>
+                </select>
+
+                <div style="display: flex; justify-content: space-between;">
+                    <div style="width: 48%;">
+                        <label for="filter-start-date">Дата начала:</label>
+                        <input type="date" id="filter-start-date" pattern="\d{4}-\d{2}-\d{2}" placeholder="YYYY-MM-DD">
+                    </div>
+                    <div style="width: 48%;">
+                        <label for="filter-end-date">Дата окончания:</label>
+                        <input type="date" id="filter-end-date" pattern="\d{4}-\d{2}-\d{2}" placeholder="YYYY-MM-DD">
+                    </div>
+                </div>
+
+                <div style="display: flex; justify-content: space-between;">
+                    <div style="width: 48%;">
+                        <label for="filter-amount-from">Сумма от:</label>
+                        <input type="number" id="filter-amount-from" placeholder="Введите сумму от">
+                    </div>
+                    <div style="width: 48%;">
+                        <label for="filter-amount-to">Сумма до:</label>
+                        <input type="number" id="filter-amount-to" placeholder="Введите сумму до">
+                    </div>
+                </div>
+
+                <div style="margin-top: 20px;">
+                    <button onclick="clearFilters()" class="reset-button">Сбросить фильтры</button>
+                </div>
+
+                <div style="margin-top: 20px; display: inline-block;">
+                    <button onclick="toggleFilterModal()" class="cancel-button">Отмена</button>
+                </div>
+                <div style="margin-top: 20px;">
+                    <button onclick="applyFilters()" class="apply-button">Применить</button>
+                </div>
             </div>
         </div>
+
 
     </div>
 </div>
@@ -164,3 +221,4 @@
 <script src="{% static 'deps/javascript/transactions_form.js' %}"></script>
 </body>
 </html>
+

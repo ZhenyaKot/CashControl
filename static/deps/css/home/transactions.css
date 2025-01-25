@@ -413,3 +413,167 @@ label {
     background-color: #007bff; /* Цвет фона для активной кнопки */
     color: white; /* Цвет текста для активной кнопки */
 }
+
+.reset-button {
+    background-color: #e7e7e7; /* Серый фон для кнопки сброса */
+    color: black; /* Белый текст для кнопки сброса */
+    border: none; /* Без границ */
+    padding: 10px 20px; /* Отступы */
+    text-align: center; /* Центрирование текста */
+    text-decoration: none; /* Без подчеркивания */
+    display: inline-block; /* Внутренние блочные элементы */
+    font-size: 16px; /* Размер шрифта */
+    margin-right: 10px; /* Отступ справа для кнопок */
+    border-radius: 5px; /* Закругленные углы */
+    cursor: pointer; /* Указатель руки при наведении */
+    transition: background-color 0.3s, box-shadow 0.3s; /* Плавные переходы */
+}
+
+.reset-button:hover {
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.5); /* Затенение при наведении */
+}
+
+/* Кнопка применения */
+.apply-button {
+    background-color: #4CAF50; /* Зеленый фон для кнопки применения */
+    color: white; /* Белый текст для кнопки применения */
+    border: none; /* Без границ */
+    padding: 10px 20px; /* Отступы */
+    text-align: center; /* Центрирование текста */
+    text-decoration: none; /* Без подчеркивания */
+    display: inline-block; /* Внутренние блочные элементы */
+    font-size: 16px; /* Размер шрифта */
+    border-radius: 5px; /* Закругленные углы */
+    cursor: pointer; /* Указатель руки при наведении */
+    transition: background-color 0.3s, box-shadow 0.3s; /* Плавные переходы */
+}
+
+.apply-button:hover {
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.5); /* Затенение при наведении */
+}
+
+/* Кнопка отмены */
+.cancel-button {
+    background-color: #e7e7e7; /* Светлый фон для кнопки отмены */
+    color: black; /* Черный текст для кнопки отмены */
+    border: none; /* Без границ */
+    padding: 10px 20px; /* Отступы */
+    text-align: center; /* Центрирование текста */
+    text-decoration: none; /* Без подчеркивания */
+    display: inline-block; /* Внутренние блочные элементы */
+    font-size: 16px; /* Размер шрифта */
+    border-radius: 5px; /* Закругленные углы */
+    cursor: pointer; /* Указатель руки при наведении */
+    transition: box-shadow 0.3s; /* Плавные переходы */
+}
+
+.cancel-button:hover {
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.5); /* Затенение при наведении */
+}
+
+.no-transactions-message {
+    color: #ff0000; /* Цвет текста (красный) */
+    font-size: 16px; /* Размер шрифта */
+    font-weight: bold; /* Жирное начертание текста */
+    text-align: center; /* Центрирование текста */
+    margin: 20px 0; /* Отступы сверху и снизу */
+    padding: 10px; /* Внутренние отступы для лучшего визуального восприятия */
+    border: 1px solid #ff0000; /* Красная рамка вокруг сообщения */
+    border-radius: 5px; /* Сглаженные углы рамки */
+    background-color: #ffe6e6; /* Светло-красный фон для подчеркивания */
+}
+
+.edit-transaction-button,
+.delete-transaction-button {
+    border: none; /* Убирает рамку */
+    cursor: pointer; /* Устанавливает указатель при наведении */
+}
+
+.edit-transaction-button:hover,
+.delete-transaction-button:hover {
+    background-color: rgba(200, 200, 200, 0.3); /* Затенение при наведении */
+    border-radius: 4px; /* Закругленные углы при наведении */
+}
+
+/* Стили для изображений внутри кнопок */
+.edit-transaction-button img,
+.delete-transaction-button img {
+    width: 25px; /* Устанавливаем ширину иконы */
+    height: 25px; /* Устанавливаем высоту иконы */
+}
+
+
+/* Уникальные стили для модального окна */
+.unique-confirm-delete-modal {
+    display: none; /* Скрыто по умолчанию */
+    position: fixed; /* Откреплено */
+    z-index: 1000; /* На переднем плане */
+    left: 0;
+    top: 0;
+    width: 100%; /* Ширина на весь экран */
+    height: 100%; /* Высота на весь экран */
+    overflow: auto; /* Включение прокрутки при необходимости */
+    background-color: rgb(0, 0, 0); /* Черный фон с прозрачностью */
+    background-color: rgba(0, 0, 0, 0.4); /* Черный с прозрачностью */
+}
+
+.unique-confirm-modal-content {
+    background-color: #fefefe;
+    margin: 15% auto; /* 15% сверху и центрально */
+    padding: 20px;
+    border: 1px solid #888;
+    width: 500px; /* Фиксированная ширина */
+    height: 100px; /* Фиксированная высота для квадратной формы */
+    position: relative; /* Для позиционирования крестика */
+}
+
+.unique-close {
+    cursor: pointer; /* Указатель при наведении */
+    position: absolute; /* Позиционируем крестик */
+    top: 10px; /* Отступ сверху */
+    right: 10px; /* Отступ справа */
+    font-size: 28px;
+    color: #aaa;
+}
+
+.unique-close:hover,
+.unique-close:focus {
+    color: black;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+.unique-btn-ok,
+.unique-btn-cancel {
+    margin: 5px;
+    padding: 10px 15px; /* Паддинг для кнопок */
+}
+
+
+/* Контейнер для сообщений */
+#message-container {
+    position: fixed; /* Фиксированное положение */
+    top: 20px; /* Отступ сверху */
+    left: 50%; /* Центрирование по горизонтали */
+    transform: translateX(-50%); /* Центрирование */
+    z-index: 1000; /* На переднем плане */
+    width: 90%; /* Ширина сообщения */
+    max-width: 500px; /* Максимальная ширина */
+    border: none; /* Убираем рамку */
+
+}
+
+/* Стили для успешного сообщения */
+.success-message {
+    background-color: #4CAF50; /* Зеленый фон */
+    color: white; /* Белый текст */
+    padding: 15px; /* Внутренние отступы */
+    border: 2px solid #4CAF50; /* Зеленая рамка */
+    border-radius: 5px; /* Закругленные углы */
+    text-align: center; /* Центрирование текста */
+    margin-bottom: 10px; /* Отступ между сообщениями */
+    animation: fadeIn 0.5s, fadeOut 0.5s 9.5s; /* Анимация появления и исчезновения */
+}
+
+
+

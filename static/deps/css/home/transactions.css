@@ -576,4 +576,42 @@ label {
 }
 
 
+/* ЭФФЕКТЫ ДЛЯ КНОПКИ ОК И ОТМЕНА ПРИ РЕДАКТИРОВАНИИ ТРАНЗАКЦИИ */
 
+.transaction-date-input,
+.transaction-description-input,
+.transaction-sum-input {
+    padding: 5px; /* Добавляем внутренние отступы для полей ввода */
+    margin-top: 5px; /* Отступ сверху для разделения с другими элементами */
+    font-size: 14px; /* Размер шрифта для лучшей читаемости */
+}
+
+.save-transaction-button,
+.cancel-transaction-button {
+    background-color: #4CAF50; /* Зеленый фон для кнопки "Ок" */
+    color: white; /* Белый текст */
+    padding: 10px 15px; /* Внутренние отступы */
+    border: none; /* Убираем рамку */
+    border-radius: 5px; /* Закругленные углы */
+    cursor: pointer; /* Указатель при наведении */
+    font-size: 16px; /* Размер шрифта */
+    margin: 5px; /* Отступы вокруг кнопок */
+    transition: background-color 0.3s, transform 0.3s; /* Плавные переходы для эффектов */
+}
+
+/* Стиль для кнопки "Отмена" */
+.cancel-transaction-button {
+    background-color: #f44336; /* Красный фон для кнопки "Отмена" */
+}
+
+/* Эффект наведения для кнопок */
+.save-transaction-button:hover,
+.cancel-transaction-button:hover {
+    background-color: #45a049; /* Более темный зеленый при наведении */
+    transform: scale(1.05); /* Увеличение кнопки при наведении */
+}
+
+/* Эффект наведения для "Отмена" */
+.cancel-transaction-button:hover {
+    background-color: #e53935; /* Более темный красный при наведении */
+}

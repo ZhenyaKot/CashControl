@@ -1,3 +1,4 @@
+import json
 from datetime import date, timedelta
 
 from categories.models import Category
@@ -166,3 +167,17 @@ def deleted_transactions(request, transactions_id):
         success_message = f'Транзакция - {transaction.description}: успешно удалена.'
         return JsonResponse({'message': success_message}, status=200)
     return JsonResponse({'status': 'error'}, status=400)
+
+
+def edit_transaction(request, transactions_id):
+    if request.method == 'PUT':
+        transaction = get_object_or_404(Transactions, id=transactions_id)
+        body = json.loads(request.body)
+        transaction.date = body.get('date', transaction.date)
+        transaction.description   = body.get('description', transaction.description)
+        transaction.sum = body.get('sum', transaction.sum)
+        transaction.save()
+
+        return JsonResponse({'success': True}, status=200)
+
+    return JsonResponse({'success': False, 'error': 'Invalid request method'}, status=400)

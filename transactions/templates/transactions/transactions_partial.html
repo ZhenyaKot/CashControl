@@ -1,19 +1,32 @@
 {% load static %}
 
+<meta name="csrf-token" content="{{ csrf_token }}">
+
 {% if all_transactions %}
 {% for transactions in all_transactions %}
-<div class="transaction-item">
+<div class="transaction-item " data-type="{{ transactions.type_transactions_id }}" >
     <div class="transaction-details">
-        <span class="transaction-date">{{ transactions.date }}</span>
+        <!-- Поле ввода для даты с типом date -->
+        <input type="date" class="transaction-date-input" value="{{ transactions.date|date:'Y-m-d' }}"
+               style="display:none;">
+        <span class="transaction-date">{{ transactions.date|date:'d-m-Y' }}</span>
+
+        <!-- Поле ввода для описания с увеличенной шириной -->
+        <input type="text" class="transaction-description-input" value="{{ transactions.description }}"
+               style="display:none; width: 700px;">
         <span class="transaction-description">{{ transactions.description }}</span>
     </div>
+
+    <input type="number" class="transaction-sum-input" value="{{ transactions.sum }}" style="display:none;">
     {% if transactions.type_transactions_id == 1 %}
-    <div class="transaction-amount negative-amount">-{{ transactions.sum }} ₽</div>
+    <div class="transaction-amount negative-amount">-<span class="transaction-sum">{{ transactions.sum }}</span> ₽</div>
     {% else %}
-    <div class="transaction-amount positive-amount">+{{ transactions.sum }} ₽</div>
+    <div class="transaction-amount positive-amount">+<span class="transaction-sum">{{ transactions.sum }}</span> ₽</div>
     {% endif %}
 
-    <button class="edit-transaction-button" onclick="editTransaction({{ transactions.id }})" title="Редактировать">
+    <button class="edit-transaction-button"
+            data-id="{{ transactions.id }}"
+            title="Редактировать">
         <img src="{% static 'deps/icons/edit_24.png' %}" alt="Редактировать">
     </button>
 
@@ -22,6 +35,9 @@
             title="Удалить">
         <img src="{% static 'deps/icons/basket_24.png' %}" alt="Удалить">
     </button>
+
+    <button class="save-transaction-button" data-id="{{ transactions.id }}" style="display:none;">Ок</button>
+    <button class="cancel-transaction-button" style="display:none;">Отмена</button>
 
 </div>
 {% endfor %}
@@ -40,8 +56,5 @@
         <button class="unique-btn-cancel" onclick="closeModal()">Отмена</button>
     </div>
 </div>
-
-
-
 
 <script src="{% static 'deps/javascript/transactions_form.js' %}"></script>

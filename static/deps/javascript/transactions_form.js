@@ -317,3 +317,136 @@ function getCookie(name) {
     }
     return cookieValue;
 }
+
+
+// КОД ДЛЯ РЕДАКТИРОВАНИЯ ТРАНЗАКЦИИ
+
+document.addEventListener('DOMContentLoaded', function() {
+    const transactionList = document.getElementById('transactions-list');
+
+    // Получаем CSRF-токен из мета-тега
+    const csrfToken = document.querySelector('meta[name="csrf-token"]').getAttribute('content');
+
+    // Обработчик событий нажатия на кнопки
+    transactionList.addEventListener('click', function(event) {
+        // Проверка нажатия на кнопку редактирования
+        const editButton = event.target.closest('.edit-transaction-button');
+        if (editButton) {
+            const transactionItem = editButton.closest('.transaction-item');
+            const dateInput = transactionItem.querySelector('.transaction-date-input');
+            const descriptionInput = transactionItem.querySelector('.transaction-description-input');
+            const sumInput = transactionItem.querySelector('.transaction-sum-input');
+
+            // Получаем текущее значение даты и форматируем его
+            const currentDate = transactionItem.querySelector('.transaction-date').innerText;
+            const [day, month, year] = currentDate.split('-');
+            const formattedDate = `${year}-${month}-${day}`;
+            dateInput.value = formattedDate;
+
+            // Показываем поля для ввода
+            dateInput.style.display = 'block';
+            descriptionInput.style.display = 'block';
+            sumInput.style.display = 'block';
+            transactionItem.querySelector('.transaction-date').style.display = 'none';
+            transactionItem.querySelector('.transaction-description').style.display = 'none';
+            transactionItem.querySelector('.transaction-amount').style.display = 'none';
+
+            // Скрываем кнопку редактирования и показываем кнопки "Сохранить" и "Отмена"
+            editButton.style.display = 'none';
+            transactionItem.querySelector('.delete-transaction-button').style.display = 'none';
+            transactionItem.querySelector('.save-transaction-button').style.display = 'inline-block';
+            transactionItem.querySelector('.cancel-transaction-button').style.display = 'inline-block';
+        }
+
+        // Проверка нажатия на кнопку "Сохранить"
+        const saveButton = event.target.closest('.save-transaction-button');
+        if (saveButton) {
+            const transactionItem = saveButton.closest('.transaction-item');
+            const dateInput = transactionItem.querySelector('.transaction-date-input');
+            const descriptionInput = transactionItem.querySelector('.transaction-description-input');
+            const sumInput = transactionItem.querySelector('.transaction-sum-input');
+
+            // Получаем данные для отправки
+            const transactionId = saveButton.dataset.id;
+            const newDate = dateInput.value;
+            const newDescription = descriptionInput.value;
+            const newSum = sumInput.value;
+
+            // Отправляем данные на сервер через AJAX (fetch)
+            fetch(`edit_transaction/${transactionId}/`, {
+                method: 'PUT',
+                headers: {
+                    'Content-Type': 'application/json',
+                    'X-CSRFToken': csrfToken // Добавление CSRF-токена
+                },
+                body: JSON.stringify({
+                    date: newDate,
+                    description: newDescription,
+                    sum: newSum
+                })
+            })
+            .then(response => {
+                if (!response.ok) {
+                    throw new Error('Не удалось обновить транзакцию');
+                }
+                return response.json();
+            })
+            .then(data => {
+                if (data.success) {
+                    // Обновляем отображаемые элементы
+                    transactionItem.querySelector('.transaction-date').innerText = newDate.split('-').reverse().join('-'); // Возвращаем в формат DD-MM-YYYY
+                    transactionItem.querySelector('.transaction-description').innerText = newDescription;
+                    transactionItem.querySelector('.transaction-sum').innerText = Math.abs(newSum);
+
+                    // Скрываем поля ввода и показываем обновленные данные
+                    dateInput.style.display = 'none';
+                    descriptionInput.style.display = 'none';
+                    sumInput.style.display = 'none';
+                    transactionItem.querySelector('.transaction-date').style.display = 'block';
+                    transactionItem.querySelector('.transaction-description').style.display = 'block';
+                    transactionItem.querySelector('.transaction-amount').style.display = 'block';
+
+                    // Скрываем кнопки "Сохранить" и "Отмена", показываем "Редактировать"
+                    saveButton.style.display = 'none';
+                    transactionItem.querySelector('.cancel-transaction-button').style.display = 'none';
+                    transactionItem.querySelector('.edit-transaction-button').style.display = 'inline-block';
+                    transactionItem.querySelector('.delete-transaction-button').style.display = 'inline-block';
+                } else {
+                    alert("Ошибка при обновлении транзакции: " + data.error);
+                }
+            })
+            .catch(error => {
+                alert("Ошибка при соединении с сервером: " + error.message);
+            });
+        }
+
+        // Проверка нажатия на кнопку "Отмена"
+        const cancelButton = event.target.closest('.cancel-transaction-button');
+        if (cancelButton) {
+            const transactionItem = cancelButton.closest('.transaction-item');
+            const dateInput = transactionItem.querySelector('.transaction-date-input');
+            const descriptionInput = transactionItem.querySelector('.transaction-description-input');
+            const sumInput = transactionItem.querySelector('.transaction-sum-input');
+
+            // Скрываем поля ввода
+            dateInput.style.display = 'none';
+            descriptionInput.style.display = 'none';
+            sumInput.style.display = 'none';
+            transactionItem.querySelector('.transaction-date').style.display = 'block';
+            transactionItem.querySelector('.transaction-description').style.display = 'block';
+            transactionItem.querySelector('.transaction-amount').style.display = 'block';
+
+            // Возвращаем кнопки редактирования
+            cancelButton.style.display = 'none';
+            transactionItem.querySelector('.save-transaction-button').style.display = 'none';
+            transactionItem.querySelector('.edit-transaction-button').style.display = 'inline-block';
+            transactionItem.querySelector('.delete-transaction-button').style.display = 'inline-block';
+        }
+    });
+});
+
+
+
+
+
+
